@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "afrostreamnotification",
+  "private_key_id": "041b2118c7eb308d8b8c71d58f00ecbcf7e1713b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC/jKG5pFKhL8O8\n15OGf5087jcPC0W7/hfxhQh4r/j/vp7t1RBFtpFjWF7D9PX2WGRt/IwlbrOtCIek\nHep9tRedIZcCPGJ8UaIMd3szTaCt4QF/ZIkZCjrMI9jTBd+FO+Sq4SlaIz8ZsZlm\n1OoKeNNKat68dNAjhqxqnqiOlM5j81BiCxKx7RxVlXKDOjNxmiBaip1vg0ekTXcW\n/oJiVM6u3ULjnHSlv1pcvlYoaamYM0xzcxJ5UvLeluOC8ZkEmKG6zsKqL8ENinT9\nGOAB3adfSAMLVJrW+pzcthy67gjUCPZPgg4JZ+vqQnQyfX8AJ2utZIZBswS6mK6X\nHB44A7dHAgMBAAECggEBAIJocip7Ly5B4JcOhYeKFjjHTYDWgdFtOkvZ8FyKIZGr\n63OsHPn5Q55JKatreJEQuL8QszFA3t6s8fvPyjdvNPZrSe3hwoM06IhoR94zuXLn\nvydGAPilOEaHGTUByJ1im1mjFY4idPE/MlsKFZSvkdoWTDItrQ6iv3uPLN51fNYa\nP9KOaE4wWBc+2yygn3eErzSHNYS67gv7inseUPp98jjakGYGU0qgK4lqxvdTuJcG\nOVqoqEtGjQ15jSjxIWpzPyug8X2Cqlobf0bSflpP1BuGTpjNgjXeFHfeKhR5ZZMX\ngCaPXrgX9WIOA7id46Fqc8QGaFhihcHuEhbAARLTM4ECgYEA9NK8fGrZt3GCAOmi\no38PZ05xNyVGLj92dLJPvnmd5dteSxfOsfyE6fEHHfF1d22EpeFMLn4MxbRDveoQ\nhYWj+3Gv/X2eGopsaEL3xmAZSvTqQPwhLqgcqdoBvJAFkPVJIi1v7F07F0BktXzg\nQaJm8N2F/yghix+hUXHEHxQp7yECgYEAyEtH3nzSYrOWfO3PQyeXP+WQKuIfJ+2A\nEhZq1OM/OwqShqW5lFd7bBXkFdt7MMkR0SxYDmfb5x7hbJGCrd/Brc7uhagEpOPG\nFZ5Wc/iwyCvV5w98tXSrPQx9Qrf2z9vrln/fLKJq1YwLrnIKAAkKoxlAiQL92Ixn\nvYKCoMNpYWcCgYBKxN1ZpgxN0PWiL7hC9HgQ1c0PyWtwjmMv6pEeG+hUHbXjeybe\nBr/U7o5835Q/YAwl2PO6MzbVXmNd6dEX5iOZlDPqV+XkNyg6g1FGnWy8DqZIKHg9\n1ovCd9kV7Go2xiKKtJO8/RAh3sGjB7s5cE69+vmEXo43/fX3eKYr062m4QKBgQDC\nBdK33ph6jlcf68oT1n04o2tVbzgZGIMwglC4qu3shqBMGKu93ESt/kK1PaiHKK++\nvcMLKWam644Y+pfpUNCwSr1Z8dmV1SNke75plyXAsl4B90mqCTt75uZMRCKtVe9Q\nGcyZ0zfEZ2ZFdSjkwd1xAxw13RUDuXcg6BUcIE+rzwKBgQCEgF4AGqC1rCopZunt\nEGOLFLPtY4a5xrLxbXGJurHSLhHx02a4xW1sJfTu6gGNaUUyLsmQX+etdQeAGMlj\n7fHMFJQj/ZY0MvbFR47amJ44S6unKb6sgYuYxieX5usKnAfPu/N+HkAFYbYfPFrA\nyHeVRZY4R25kk3u6zL4N0bflow==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-crashreporting-0w99g@afrostreamnotification.iam.gserviceaccount.com",
+  "client_id": "102490164558098917756",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-crashreporting-0w99g%40afrostreamnotification.iam.gserviceaccount.com"
+}

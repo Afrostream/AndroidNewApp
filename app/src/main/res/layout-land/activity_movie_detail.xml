@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context="tv.afrostream.app.activitys.MovieDetailsActivity">
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:id="@+id/app_bar_layout"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+
+            app:titleEnabled="false"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+
+
+
+
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fitsSystemWindows="true"
+                >
+
+                <ImageView
+                    android:transitionName="movieimage"
+                    android:layout_width="match_parent"
+                    android:id="@+id/imgMovie"
+                    android:scaleType="fitXY"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/splash_bg"/>
+
+
+                <ImageView
+
+                    android:layout_width="32dp"
+                    android:id="@+id/imgdown"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="32dp"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/arrowdown"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                <ImageView
+
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:id="@+id/bntplay"
+                    android:scaleType="fitXY"
+
+                    android:background="@drawable/playbutton"/>
+
+                 </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/txtsubscribe"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        android:textColor="@color/colorAccentdark"
+                        android:text="@string/subscribe"/>
+
+
+                </LinearLayout>
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:layout_collapseMode="pin"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/scroll"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ProgressBar
+
+            android:id="@+id/positionvideo"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+
+            android:visibility="gone"
+            android:layout_height="12dp"
+            />
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/favlayout"
+        android:orientation="horizontal"
+        android:gravity="center"       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="15dp"
+            android:fillViewport="true"
+            android:id="@+id/imgFavButton"
+          />
+
+        <TextView
+            android:id="@+id/FavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#ffffff"
+            android:textAlignment="center"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+           android:layout_alignParentRight="true"
+
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:fillViewport="true"
+            android:visibility="gone"
+
+            android:id="@+id/bntDownload"
+            android:background="@drawable/icon_menu_download"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/layoutTrailer"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:gravity="center"       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@color/colorAccentdark">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/playtrailer"
+                    android:fillViewport="true"
+                    android:id="@+id/imgbntTrailer"
+                    />
+
+                <TextView
+                    android:id="@+id/bntTrailer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bande_d_annonce"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shapebutton"
+                android:layout_marginLeft="15dp"
+                android:layout_alignParentLeft="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/txtMovieLabel"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+
+                    android:padding="5dp"
+                    android:text="test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shapebuttongrey"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/FrameLayoutDuration"
+
+                >
+
+                <TextView
+                    android:id="@+id/txtMovieDuration"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+
+                    android:padding="5dp"
+                    android:text="test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtMovieSc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+
+
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+        android:id="@+id/expand_text_view"
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        expandableTextView:animAlphaStart="1"
+        expandableTextView:maxCollapsedLines="4">
+
+        <TextView
+            android:id="@id/expandable_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@id/expand_collapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:background="@android:color/transparent"
+            android:padding="16dp" />
+    </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+
+
+
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginTop="5dp"
+
+            android:id="@+id/lstHomeMovies"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout    android:layout_width="match_parent"
+        android:layout_height="match_parent"  >
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            android:layout_gravity="center|center_horizontal"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:layout_centerInParent="true"
+
+            android:indeterminateTint="#bb33b5e5"
+            />
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

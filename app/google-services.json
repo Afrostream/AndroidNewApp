@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "617301486942",
+    "firebase_url": "https://afrostreamnotification.firebaseio.com",
+    "project_id": "afrostreamnotification",
+    "storage_bucket": "afrostreamnotification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617301486942:android:e7e20e9e18f229c4",
+        "android_client_info": {
+          "package_name": "tv.afrostream.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617301486942-lqq90ev1ggo2ib6b4ae8uc9kllfpngep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG2-E13t--LI6Z596qGUHAjzUP9wGJ8qc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

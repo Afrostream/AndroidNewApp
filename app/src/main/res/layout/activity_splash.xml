@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:background="@drawable/splash_bg"
+    android:gravity="center"
+    android:layout_height="fill_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:layout_gravity="center_vertical"
+        android:transitionName="logo"
+        android:id="@+id/logo"
+        android:layout_marginBottom="100dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:visibility="gone"/>
+</LinearLayout>

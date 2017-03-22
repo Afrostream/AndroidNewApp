@@ -1,0 +1,179 @@
+<resources  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Afrostream</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="activity_login_welcome">THE BEST AFRO FILMS AND SERIES</string>
+
+    <string name="activity_login_username">Username</string>
+
+    <string name="activity_login_password">Password</string>
+
+    <string name="activity_login_connexion">CONNECT</string>
+
+    <string name="activity_login_new_account">SIGN UP</string>
+
+    <string name="activity_login_forget_password">Forget password</string>
+
+    <string name="activity_login_connect_with">Connect with</string>
+
+    <string name="activity_login_forget_validate">Validate</string>
+
+    <string name="activity_login_forget_dialog">Fortget password</string>
+
+    <string name="activity_login_forget_email_hint">Email</string>
+    <string name="activity_login_forget_new_password_hint">New password</string>
+    <string name="activity_login_forget_verif_password_hint">Confirm password</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="activity_login_error_login_empty">Please enter your credentials</string>
+    <string name="activity_login_error_login_incorrect">Invalid identifiers</string>
+    <string name="activity_login_error_login_problem">Authentication error</string>
+
+
+    <string name="activity_main_empty_access_token">Invalid token</string>
+    <string name="activity_main_empty_user_info_error">Cant\'t get user informations</string>
+    <string name="add_favoris">ADD TO FAVORITES</string>
+
+    <string name="delete_favoris">DELETE FROM FAVORITES</string>
+
+    <string name="media_route_menu_title">Play on&#8230;</string>
+
+    <string name="video">Video</string>
+
+    <string name="audio">Audio</string>
+
+    <string name="text">Text</string>
+
+    <string name="retry">Retry</string>
+
+    <string name="selection_disabled">Disabled</string>
+
+    <string name="selection_default">Default</string>
+
+    <string name="selection_default_none">Default (none)</string>
+
+    <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
+
+    <string name="enable_random_adaptation">Enable random adaptation</string>
+
+    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
+
+    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
+
+    <string name="error_drm_unknown">An unknown DRM error occurred</string>
+
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+
+    <string name="sample_list_load_error">One or more sample lists failed to load</string>
+
+    <string name="app_id">9922DB2A</string>
+
+
+
+    <string name="todo_connect">This app will not launch an application.</string>
+
+
+    <string name="activity_detail_movie_information_error">Can\'t get movie informations </string>
+
+
+    <string name="home">Home</string>
+
+    <string name="categories">Categories</string>
+
+    <string name="search_hint">Search</string>
+    <string name="listefavoris" >My favorites</string>
+
+    <string name="deletefavTitleDialog" >Delete from favorites</string>
+    <string name="deletefavTextDialog" >Are you sure you want to delete the selected item from the favorites list ?</string>
+
+    <string name="yes" >YES</string>
+    <string name="no" >NO</string>
+
+    <string name="firstname" >Firstname</string>
+    <string name="lastname" >Lastname</string>
+
+    <string name="checkforms" >Please check the form</string>
+
+    <string name="cancel" >Cancel</string>
+    <string name="backexit">Please press the Return key to log out</string>
+    <string name="notabonne">Not subscribed</string>
+    <string name="futuresubscription">Your subscription will be activated soon, please log back in later</string>
+    <string name="subsciption_plans">List of plans available:</string>
+    <string name="phone">Phone</string>
+
+
+    <string name="title_action_reset">Reset</string>
+
+    <string name="label_card_number">XXXX XXXX XXXX XXXX</string>
+    <string name="label_expired_date">MM/YY</string>
+    <string name="label_card_holder">CARD HOLDER</string>
+    <string name="label_cvv_code">CVV CODE</string>
+
+    <string name="hint_card_number">16-DIGIT CARD NUMBER</string>
+    <string name="hint_expired_date">EXPIRED DATE</string>
+    <string name="hint_card_holder">CARD HOLDER</string>
+    <string name="hint_cvv_code">CVV CODE</string>
+
+    <string name="label_secure_submission">Secure Submission</string>
+    <string name="videoqualite">Video quality</string>
+    <string name="AudioLanguage">Audio Language</string>
+    <string name="videocaption">Subtitle</string>
+    <string name="VideoFrancaisTrack">French</string>
+    <string name="verifpasswordmsg">Please check your password</string>
+    <string name="resetpasswordmsg">An email was sent to you to complete the procedure</string>
+    <string name="deconnexion">Disconnection</string>
+    <string name="mydownload">My downloads</string>
+    <string name="download">Download</string>
+    <string name="askdownload">Are you sure you want to download the selected video?</string>
+    <string name="deletedownloadDialog" >Are you sure you want to delete the selected item?</string>
+
+    <string name="listepisodedownload">List of episodes</string>
+    <string name="episode">Episode</string>
+    <string name="downloadbegin">Start of download</string>
+    <string name="please_wait">Please wait</string>
+    <string name="progress_dialog_decrypt">Preparing the video</string>
+
+    <string name="bnt_local_mode">My Downloads</string>
+    <string name="nolocalfile">Local content not available, please login with your account at least once</string>
+    <string name="bande_d_annonce">TRAILER</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="confirmpay">Confirm the payment</string>
+    <string name="confirmpayquestion">Do you really want to confirm payment ?</string>
+    <string name="sizeoffile">Size of file :</string>
+    <string name="days">Days</string>
+    <string name="MsgPlan1Demo">Thank you for your trust, you now have access a 48 hours access to enjoy the best movies and series.</string>
+    <string name="MsgPlan2Demo">Thank you for your trust, you now have a 48 hours access and enough mobile date to enjoy the best movies and series.</string>
+    <string name="facebook_app_id">828887693868980</string>
+
+    <string name="checkpassword">Please check your password</string>
+    <string name="coupon">Coupon</string>
+    <string name="coupondescription">Enter the coupon code to start using your Afrostream subscription</string>
+    <string name="scanqrcode">Scan code</string>
+    <string name="invalidcoupon">Coupon non valide</string>
+    <string name="checkFirstnameLastname">Veuillez bien saisir votre nom et prénom</string>
+    <string name="couponInfo">Informations</string>
+    <string name="MentionsLegal">Mentions légales</string>
+    <string name="CGU">CGU</string>
+    <string name="contact">Contact</string>
+    <string name="afrostream">Afrostream</string>
+    <string name="acceptCgu">j\'accepte les Conditions Générales d\'Utilisation</string>
+    <string name="pleaseacceptcgu">Veuillez accepter les Conditions Générales d\'Utilisation</string>
+    <string name="payCondition">je fais la demande express du début immediat du service et je renonce au droit de rétractation</string>
+    <string name="PleaseAcceptPayCondition">Veuillez accepter les conditions de paiement</string>
+</resources>
