@@ -1,314 +1,5 @@
 [
     {
-        "outputFile": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-en\\values-en.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 52,
-                    "endOffset": 103
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 120,
-                        "endColumn": 52,
-                        "endOffset": 168
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 108,
-                    "endColumn": 49,
-                    "endOffset": 153
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 1,
-                        "startColumn": 4,
-                        "startOffset": 16,
-                        "endColumn": 49,
-                        "endOffset": 61
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 158,
-                    "endColumn": 51,
-                    "endOffset": 205
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 495,
-                        "endColumn": 51,
-                        "endOffset": 542
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 210,
-                    "endColumn": 51,
-                    "endOffset": 257
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 361,
-                        "endColumn": 51,
-                        "endOffset": 408
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 262,
-                    "endColumn": 64,
-                    "endOffset": 322
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 296,
-                        "endColumn": 64,
-                        "endOffset": 356
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 327,
-                    "endColumn": 44,
-                    "endOffset": 367
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 547,
-                        "endColumn": 44,
-                        "endOffset": 587
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 372,
-                    "endColumn": 51,
-                    "endOffset": 419
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 646,
-                        "endColumn": 51,
-                        "endOffset": 693
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 424,
-                    "endColumn": 37,
-                    "endOffset": 457
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 258,
-                        "endColumn": 37,
-                        "endOffset": 291
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 462,
-                    "endColumn": 59,
-                    "endOffset": 517
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 760,
-                        "endColumn": 59,
-                        "endOffset": 815
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 522,
-                    "endColumn": 61,
-                    "endOffset": 579
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 698,
-                        "endColumn": 61,
-                        "endOffset": 755
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 584,
-                    "endColumn": 41,
-                    "endOffset": 621
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 413,
-                        "endColumn": 41,
-                        "endOffset": 450
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 626,
-                    "endColumn": 52,
-                    "endOffset": 674
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 67,
-                        "endColumn": 52,
-                        "endOffset": 115
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 679,
-                    "endColumn": 39,
-                    "endOffset": 714
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 455,
-                        "endColumn": 39,
-                        "endOffset": 490
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 15,
-                    "startColumn": 4,
-                    "startOffset": 719,
-                    "endColumn": 53,
-                    "endOffset": 768
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 592,
-                        "endColumn": 53,
-                        "endOffset": 641
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 16,
-                    "startColumn": 4,
-                    "startOffset": 773,
-                    "endColumn": 37,
-                    "endOffset": 806
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 174,
-                        "endColumn": 37,
-                        "endOffset": 207
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 17,
-                    "startColumn": 4,
-                    "startOffset": 811,
-                    "endColumn": 45,
-                    "endOffset": 852
-                },
-                "from": {
-                    "file": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\src\\main\\res\\values-en\\strings.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 212,
-                        "endColumn": 45,
-                        "endOffset": 253
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-en\\values-en.xml",
         "map": [
             {
@@ -324,9 +15,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 120,
+                        "startOffset": 124,
                         "endColumn": 52,
-                        "endOffset": 168
+                        "endOffset": 172
                     }
                 }
             },
@@ -343,9 +34,9 @@
                     "position": {
                         "startLine": 1,
                         "startColumn": 4,
-                        "startOffset": 16,
+                        "startOffset": 17,
                         "endColumn": 49,
-                        "endOffset": 61
+                        "endOffset": 62
                     }
                 }
             },
@@ -362,9 +53,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 495,
+                        "startOffset": 508,
                         "endColumn": 51,
-                        "endOffset": 542
+                        "endOffset": 555
                     }
                 }
             },
@@ -381,9 +72,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 361,
+                        "startOffset": 371,
                         "endColumn": 51,
-                        "endOffset": 408
+                        "endOffset": 418
                     }
                 }
             },
@@ -400,9 +91,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 296,
+                        "startOffset": 305,
                         "endColumn": 64,
-                        "endOffset": 356
+                        "endOffset": 365
                     }
                 }
             },
@@ -419,9 +110,9 @@
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 547,
+                        "startOffset": 561,
                         "endColumn": 44,
-                        "endOffset": 587
+                        "endOffset": 601
                     }
                 }
             },
@@ -438,9 +129,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 646,
+                        "startOffset": 662,
                         "endColumn": 51,
-                        "endOffset": 693
+                        "endOffset": 709
                     }
                 }
             },
@@ -457,9 +148,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 258,
+                        "startOffset": 266,
                         "endColumn": 37,
-                        "endOffset": 291
+                        "endOffset": 299
                     }
                 }
             },
@@ -476,9 +167,9 @@
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 760,
+                        "startOffset": 778,
                         "endColumn": 59,
-                        "endOffset": 815
+                        "endOffset": 833
                     }
                 }
             },
@@ -495,9 +186,9 @@
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 698,
+                        "startOffset": 715,
                         "endColumn": 61,
-                        "endOffset": 755
+                        "endOffset": 772
                     }
                 }
             },
@@ -514,9 +205,9 @@
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 413,
+                        "startOffset": 424,
                         "endColumn": 41,
-                        "endOffset": 450
+                        "endOffset": 461
                     }
                 }
             },
@@ -533,9 +224,9 @@
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 67,
+                        "startOffset": 70,
                         "endColumn": 52,
-                        "endOffset": 115
+                        "endOffset": 118
                     }
                 }
             },
@@ -552,9 +243,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 455,
+                        "startOffset": 467,
                         "endColumn": 39,
-                        "endOffset": 490
+                        "endOffset": 502
                     }
                 }
             },
@@ -571,9 +262,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 592,
+                        "startOffset": 607,
                         "endColumn": 53,
-                        "endOffset": 641
+                        "endOffset": 656
                     }
                 }
             },
@@ -590,9 +281,9 @@
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 174,
+                        "startOffset": 180,
                         "endColumn": 37,
-                        "endOffset": 207
+                        "endOffset": 213
                     }
                 }
             },
@@ -609,9 +300,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 212,
+                        "startOffset": 219,
                         "endColumn": 45,
-                        "endOffset": 253
+                        "endOffset": 260
                     }
                 }
             }

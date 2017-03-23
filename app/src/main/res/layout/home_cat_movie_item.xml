@@ -19,7 +19,7 @@
             android:scaleType="fitXY"
             android:transitionName="movieimage"
 
-            android:background="#b6afcd"
+            android:background="@drawable/placeholderimage"
             android:layout_centerHorizontal="true"
             android:id="@+id/NetworkImageView" />
 

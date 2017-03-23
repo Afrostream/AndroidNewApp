@@ -678,7 +678,7 @@ public SharedPreferences sharedpreferences;
         mn.clear();
         mn.add(R.string.home).setIcon(R.drawable.home);
         mn.add(R.string.listefavoris).setIcon(R.drawable.favmenu);
-        mn.add(R.string.mydownload).setIcon(R.drawable.downloadicon);
+        //mn.add(R.string.mydownload).setIcon(R.drawable.downloadicon);
         final SubMenu catMenu = mn.addSubMenu(R.string.categories).setIcon(R.drawable.categories);
 
 
@@ -903,7 +903,7 @@ public SharedPreferences sharedpreferences;
         super.onNewIntent(intent);
         Log.e("MainAct","New Intent");
 
-
+        StaticVar.FirstLaunch=true;
         if (intent.getExtras() != null) {
 
             sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);

@@ -165,15 +165,17 @@
     <string name="coupon">Coupon</string>
     <string name="coupondescription">Enter the coupon code to start using your Afrostream subscription</string>
     <string name="scanqrcode">Scan code</string>
-    <string name="invalidcoupon">Coupon non valide</string>
-    <string name="checkFirstnameLastname">Veuillez bien saisir votre nom et prénom</string>
+    <string name="invalidcoupon">Not valid code</string>
+    <string name="checkFirstnameLastname">Please enter your first and last name</string>
     <string name="couponInfo">Informations</string>
-    <string name="MentionsLegal">Mentions légales</string>
+    <string name="MentionsLegal">Legals</string>
     <string name="CGU">CGU</string>
     <string name="contact">Contact</string>
     <string name="afrostream">Afrostream</string>
-    <string name="acceptCgu">j\'accepte les Conditions Générales d\'Utilisation</string>
-    <string name="pleaseacceptcgu">Veuillez accepter les Conditions Générales d\'Utilisation</string>
-    <string name="payCondition">je fais la demande express du début immediat du service et je renonce au droit de rétractation</string>
-    <string name="PleaseAcceptPayCondition">Veuillez accepter les conditions de paiement</string>
+    <string name="acceptCgu">I accept the general terms of use</string>
+    <string name="pleaseacceptcgu">Please accept the general terms of use</string>
+    <string name="payCondition">I expressly request the immediate commencement of service and I waive the right of withdrawal</string>
+    <string name="PleaseAcceptPayCondition">Please accept payment terms</string>
+    <string name="desactiver">Disable</string>
+    <string name="auto">Auto</string>
 </resources>

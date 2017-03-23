@@ -1,17 +1,5 @@
 [
     {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action.xml",
-        "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_action.xml"
-    },
-    {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_template_custom_big.xml"
-    },
-    {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_template_icon_group.xml"
-    },
-    {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_custom_big.xml",
         "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },
@@ -21,10 +9,6 @@
     },
     {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_action_tombstone.xml"
-    },
-    {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action_tombstone.xml",
         "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {

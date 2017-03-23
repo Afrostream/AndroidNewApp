@@ -43,7 +43,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 
-
+import com.google.android.gms.common.api.Status;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -616,6 +616,7 @@ try {
 
                         showToast("Merci pour votre paiement,vous pouvez vous connecter maintenant");
                         StaticVar.subscription=true;
+                        StaticVar.FirstLaunch=true;
 
                         loading_spinner.setVisibility(View.GONE);
 

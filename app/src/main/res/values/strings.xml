@@ -176,6 +176,8 @@
     <string name="pleaseacceptcgu">Veuillez accepter les Conditions Générales d\'Utilisation</string>
     <string name="payCondition">je fais la demande express du début immediat du service et je renonce au droit de rétractation</string>
     <string name="PleaseAcceptPayCondition">Veuillez accepter les conditions de paiement</string>
+    <string name="desactiver">Désactiver</string>
+    <string name="auto">Auto</string>
 
 
 </resources>

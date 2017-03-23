@@ -34,7 +34,7 @@ android {
         config {
             keyAlias 'afrostream'
             keyPassword 'BMkHVqQLPqFD'
-            storeFile file('D:/mywork/AfroStream/AfrostreamNewApp/Cerficat/afs_keystore_release.jks')
+            storeFile file('D:/mywork/AfroStream/AfrostreamNewApp/AndroidNewApp/Cerficat/afs_keystore_release.jks')
             storePassword 'TYDUpLQPZcmu'
         }
     }

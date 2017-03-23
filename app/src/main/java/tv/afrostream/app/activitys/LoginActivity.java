@@ -1798,7 +1798,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         }
 
        // if (slide.exists() && catMovies.exists()) {
-            AnimationUtils.enterBottom(bnt_my_download,1000);
+          //  AnimationUtils.enterBottom(bnt_my_download,1000);
        /* }else
         {
             bnt_my_download.setVisibility(View.GONE);

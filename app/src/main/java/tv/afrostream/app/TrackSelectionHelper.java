@@ -49,6 +49,7 @@ public final class TrackSelectionHelper implements View.OnClickListener,
     private CheckedTextView enableRandomAdaptationView;
     private CheckedTextView[][] trackViews;
     private Activity activity;
+    private String title="";
 
     /**
      * @param selector The track selector.
@@ -85,6 +86,9 @@ public final class TrackSelectionHelper implements View.OnClickListener,
         }
         isDisabled = selector.getRendererDisabled(rendererIndex);
         override = selector.getSelectionOverride(rendererIndex, trackGroups);
+        this.title= (String) title;
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(title)
@@ -115,7 +119,22 @@ public final class TrackSelectionHelper implements View.OnClickListener,
         defaultView.setFocusable(true);
         defaultView.setOnClickListener(this);
         root.addView(inflater.inflate(R.layout.list_divider, root, false));
-        root.addView(defaultView);
+
+        if ( this.title.equals(activity.getString(R.string.videocaption)))
+        {
+            defaultView.setText(R.string.desactiver);
+            root.addView(defaultView);
+
+        }else if ( this.title.equals(activity.getString(R.string.AudioLanguage)))
+        {
+
+        }else  if ( this.title.equals(activity.getString(R.string.videoqualite)))
+        {
+            defaultView.setText(R.string.auto);
+            root.addView(defaultView);
+        }
+
+
 
         // Per-track views.
         boolean haveSupportedTracks = false;
@@ -328,7 +347,10 @@ public final class TrackSelectionHelper implements View.OnClickListener,
             return  "HD";
         }
 
-        else  if (format.width==1980)
+        else  if (format.width==1920)
+        {
+            return  "FULL HD";
+        }else  if (format.width==1980)
         {
             return  "FULL HD";
         }
