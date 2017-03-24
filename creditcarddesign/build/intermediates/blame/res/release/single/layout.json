@@ -68,12 +68,12 @@
         "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout\\lyt_card_cvv.xml",
-        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\layout\\lyt_card_cvv.xml"
-    },
-    {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
         "source": "C:\\Users\\bahri\\.android\\build-cache\\f7cf88f9912d976eb0abc2e3c1387efde95f08c9\\output\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout\\lyt_card_cvv.xml",
+        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\layout\\lyt_card_cvv.xml"
     },
     {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_dropdown_item_icons_2line.xml",

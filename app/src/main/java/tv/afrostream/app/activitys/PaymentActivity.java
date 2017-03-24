@@ -155,7 +155,6 @@ int ListPosition=0;
 
           lstPlans = new ArrayList<ListPlansModel>();
 
-            lstPlans.add(new ListPlansModel( "coupon","0",  "0",  getString(R.string.coupon),  getString(R.string.coupondescription),  "",  "",  "",true,false,"afrostream","afrotream"));
 
 
             for (int i = 0; i < response.length(); i++) {
@@ -216,7 +215,10 @@ int ListPosition=0;
 
             }
 
-        ListviewSubcriptionAdapter adapter = new ListviewSubcriptionAdapter(this,lstPlans);
+            lstPlans.add(new ListPlansModel( "coupon","0",  "0",  getString(R.string.coupon),  getString(R.string.coupondescription),  "",  "",  "",true,false,"afrostream","afrotream"));
+
+
+            ListviewSubcriptionAdapter adapter = new ListviewSubcriptionAdapter(this,lstPlans);
 
         lst.setAdapter(adapter);
 
