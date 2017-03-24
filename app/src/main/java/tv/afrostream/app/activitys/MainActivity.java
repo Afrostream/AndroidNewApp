@@ -124,11 +124,16 @@ public SharedPreferences sharedpreferences;
     }
 
     public void requestPermission(){
-        ActivityCompat.requestPermissions(MainActivity.this,new String[]{
+        try {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{
 
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE},1
-        );
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE}, 1
+            );
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
     }
 
     private void makeGetImageInCach(String url) {
@@ -777,9 +782,7 @@ public SharedPreferences sharedpreferences;
     }
 
     public void  DoResponseMovieByIDForNotification (JSONObject response) {
-        Log.d(TAG, response.toString());
 
-        ArrayList<SerieSaisonModel> CatMoviesList = new ArrayList<SerieSaisonModel>();
 
         try {
 
@@ -787,16 +790,17 @@ public SharedPreferences sharedpreferences;
             // mn.clear();
 
 
-            JSONObject Movie = (JSONObject) response;
 
-            Intent intent = new Intent(this, MovieDetailsActivity.class);
+                JSONObject Movie = (JSONObject) response;
 
-
-
-            intent.putExtra ("movieInfo",Movie.toString());
+                Intent intent = new Intent(this, MovieDetailsActivity.class);
 
 
-            startActivity(intent);
+                intent.putExtra("movieInfo", Movie.toString());
+
+
+                startActivity(intent);
+
 
 
 

@@ -6,6 +6,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.MediaRouteButton;
 import android.support.v7.media.MediaRouteSelector;
@@ -740,14 +743,40 @@ try {
 
             if (video_type.equals("live"))
             {
+
                 try {
-                    player.seekTo(playerWindow, 0);
+                    if (player != null) player.seekTo(playerWindow, 0);
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+
+                    handler.postDelayed(new Runnable() {
+
+
+                        @Override
+                        public void run() {
+
+                        try {
+                            if (player != null) player.seekTo(playerWindow, 0);
+                        }catch (Exception ee)
+                        {
+                            ee.printStackTrace();
+                        }
+
+
+                        }
+                    }, 1000 );
+
                     SeekBar seekBar = (SeekBar) rootView.findViewById(R.id.exo_progress);
                     seekBar.setVisibility(View.GONE);
 
 
-                    TextView txtdiration = (TextView) rootView.findViewById(R.id.exo_duration);
-                    txtdiration.setVisibility(View.GONE);
+                    TextView txtduration = (TextView) rootView.findViewById(R.id.exo_duration);
+                    TextView txtposition = (TextView) rootView.findViewById(R.id.exo_position);
+
+
+                    txtduration.setVisibility(View.GONE);
+                    txtposition.setVisibility(View.GONE);
+
                 }catch (Exception ee)
                 {
                     ee.getStackTrace();
@@ -763,8 +792,10 @@ try {
                     seekBar.setVisibility(View.VISIBLE);
 
 
-                    TextView txtdiration = (TextView) rootView.findViewById(R.id.exo_duration);
-                    txtdiration.setVisibility(View.VISIBLE);
+                    TextView txtduration = (TextView) rootView.findViewById(R.id.exo_duration);
+                    TextView txtposition = (TextView) rootView.findViewById(R.id.exo_position);
+                    txtduration.setVisibility(View.VISIBLE);
+                    txtposition.setVisibility(View.VISIBLE);
                 }catch (Exception ee)
                 {
                     ee.getStackTrace();

@@ -29,6 +29,7 @@
                 android:id="@+id/NetworkImageView"
                 android:layout_width="130dp"
                 android:layout_height="120dp"
+                android:background="@drawable/placeholder"
                 android:scaleType="fitXY"
                 />
 

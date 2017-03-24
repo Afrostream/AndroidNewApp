@@ -211,7 +211,21 @@ CallbackManager callbackManager;
     protected void onResume() {
         super.onResume();
         StaticVar.FirstLaunch=true;
+try {
+    bntOrange.setEnabled(true);
+    bntBouygue.setEnabled(true);
+    bntFacebook.setEnabled(true);
+    bntNewAccount.setEnabled(true);
+    bntLogin.setEnabled(true);
+    txtForgetPassword.setEnabled(true);
+}catch (Exception ee)
+{
+    ee.getStackTrace();
+}
+
         try {
+
+
 
        if (sharedpreferences!=null) {
 
@@ -867,7 +881,12 @@ final String saveIfSkip = "skipProtectedAppsMessage";
     }
 
     private void subscribeToPushService() {
+
+        if (StaticVar.DevMode==false)
         FirebaseMessaging.getInstance().subscribeToTopic("news");
+        else
+            FirebaseMessaging.getInstance().subscribeToTopic("newsdev");
+
 
 
 
@@ -959,12 +978,25 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                         }
 
                     }
+
+                    try {
+                        bntOrange.setEnabled(true);
+                        bntBouygue.setEnabled(true);
+                        bntFacebook.setEnabled(true);
+                        bntNewAccount.setEnabled(true);
+                        bntLogin.setEnabled(true);
+                        txtForgetPassword.setEnabled(true);
+                    }catch (Exception ee)
+                    {
+                        ee.getStackTrace();
+                    }
+
                     Thread.sleep(200);
 
 
                     startActivity(intent);
                     loading_spinner.setVisibility(View.GONE);
-                    bntLogin.setEnabled(true);
+
 
 
                 } catch (Exception e) {
