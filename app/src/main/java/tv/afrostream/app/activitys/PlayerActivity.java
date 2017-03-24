@@ -182,6 +182,7 @@ private  ProgressBar loading_spinner;
     final Handler timer_handler = new Handler();
 
     View decorView;
+    View rootView;
     private LoadControl loadControl = null;
 
     String VideoName="";
@@ -191,6 +192,8 @@ private  ProgressBar loading_spinner;
 private String imageUrl="";
     private SessionManagerListener<CastSession> mSessionManagerListener;
     private PlaybackState mPlaybackState;
+
+    private MediaController mediaController;
 
     public enum PlaybackLocation {
         LOCAL,
@@ -297,9 +300,15 @@ try {
         {
             ee.printStackTrace();
         }
-        View rootView = findViewById(R.id.root);
+         rootView = findViewById(R.id.root);
         rootView.setOnClickListener(this);
         debugRootView = (LinearLayout) findViewById(R.id.controls_root);
+
+        mediaController = new MediaController(this);
+
+
+        mediaController.setAnchorView(rootView);
+
 
         loading_spinner=(ProgressBar) findViewById(R.id.loading_spinner);
         castView = (LinearLayout) findViewById(R.id.controls_cast);
@@ -731,8 +740,35 @@ try {
 
             if (video_type.equals("live"))
             {
-                player.seekTo(playerWindow, 0);
+                try {
+                    player.seekTo(playerWindow, 0);
+                    SeekBar seekBar = (SeekBar) rootView.findViewById(R.id.exo_progress);
+                    seekBar.setVisibility(View.GONE);
 
+
+                    TextView txtdiration = (TextView) rootView.findViewById(R.id.exo_duration);
+                    txtdiration.setVisibility(View.GONE);
+                }catch (Exception ee)
+                {
+                    ee.getStackTrace();
+                }
+
+
+            }else
+
+            {
+                try {
+
+                    SeekBar seekBar = (SeekBar) rootView.findViewById(R.id.exo_progress);
+                    seekBar.setVisibility(View.VISIBLE);
+
+
+                    TextView txtdiration = (TextView) rootView.findViewById(R.id.exo_duration);
+                    txtdiration.setVisibility(View.VISIBLE);
+                }catch (Exception ee)
+                {
+                    ee.getStackTrace();
+                }
             }
 
            if (playerPositionIntent!=0)

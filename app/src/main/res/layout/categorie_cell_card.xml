@@ -94,11 +94,11 @@
                     android:layout_centerVertical="true">
 
                     <ImageView
-                        android:layout_width="30dp"
+                        android:layout_width="32dp"
                         android:layout_gravity="right"
                         android:id="@+id/bntAddFav"
                         android:layout_height="32dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerInside"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         />
