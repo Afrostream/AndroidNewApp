@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -87,11 +88,15 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import tv.afrostream.app.services.DownloadFileService;
 import tv.afrostream.app.utils.AnimationUtils;
@@ -134,6 +139,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         return "";
     }
+
+
+
 
     class DownloadFileFromURL extends AsyncTask<String, String, String> {
 
@@ -432,7 +440,7 @@ ProgressBar loading_spinner;
     String sourceMp4Size="";
     String sourceMp4DecipheredSize="";
 
-
+    public SharedPreferences sharedpreferences;
     protected AppController app;
 
     private CastSession mCastSession;
@@ -441,6 +449,222 @@ ProgressBar loading_spinner;
 ProgressBar positionvideo;
     ImageView imgbntTrailer;
     TextView bntTrailer;
+
+    Timer timerRefreshToken;
+    TimerTask timerTask;
+
+    final Handler handlerRefreshToken = new Handler();
+
+
+
+
+    public void startTimer() {
+
+        try {
+            stoptimertask();
+            timerRefreshToken = new Timer();
+
+
+            initializeTimerTask();
+
+
+            timerRefreshToken.schedule(timerTask, 50, 10000); //
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
+        }
+    }
+
+    public void stoptimertask() {
+        try {
+
+            if (timerRefreshToken != null) {
+                timerRefreshToken.cancel();
+                timerRefreshToken = null;
+            }
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
+        }
+    }
+
+    public Boolean IfTokenExpire()
+    {
+
+        if (!StaticVar.date_token.equals("") && !StaticVar.expires_in.equals("")) {
+            try {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+                Date date_t = sdf.parse(StaticVar.date_token);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date_t);
+                int second = Integer.parseInt(StaticVar.expires_in);
+                // calendar.add(Calendar.SECOND, second);
+                Date dt = calendar.getTime();
+                Date date_Now = new Date();
+                long second_diff = TimeUnit.MILLISECONDS.toSeconds((date_Now.getTime() - dt.getTime()) );
+
+                second_diff+=7200;
+                if (second_diff > second) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+
+            } catch (Exception ee) {
+                ee.getStackTrace();
+                return true;
+            }
+        }else {
+
+
+            return true;
+
+        }
+    }
+
+    public void RefreshToken()
+    {
+        if (IfTokenExpire()) {
+
+            String urlJsonObj = StaticVar.BaseUrl + "/auth/oauth2/token";
+
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("grant_type", "refresh_token");
+            params.put("refresh_token", StaticVar.refresh_token);
+            params.put("client_id", StaticVar.clientApiID);
+            params.put("client_secret", StaticVar.clientSecret);
+
+
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                    urlJsonObj, new JSONObject(params), new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    // Log.d(TAG, response.toString());
+
+                    try {
+
+
+
+
+                        String access_token = "";
+                        access_token = response.getString("access_token");
+                        String refresh_token = "";
+                        refresh_token = response.getString("refresh_token");
+                        String expires_in = "";
+                        expires_in = response.getString("expires_in");
+
+
+                        StaticVar.access_token = access_token;
+                        StaticVar.refresh_token = refresh_token;
+                        StaticVar.expires_in = expires_in;
+
+                        synchronized (this) {
+
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                            String currentDateandTime = "";
+
+                            try {
+
+
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                currentDateandTime = sdf.format(new Date());
+                            } catch (Exception ee) {
+                                ee.getStackTrace();
+                            }
+                            StaticVar.date_token=currentDateandTime;
+
+
+                            editor.putString("access_token", access_token);
+                            editor.putString("refresh_token", refresh_token);
+                            editor.putString("expires_in", expires_in);
+                            editor.putString("date_token", currentDateandTime);
+
+                            editor.commit();
+                        }
+
+
+                    } catch (Exception e) {
+
+
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(),
+                                "Error: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                    try {
+
+                        if (error.networkResponse != null && error.networkResponse.data != null) {
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson = error2.getMessage();
+                            JSONObject errorJ = new JSONObject(errorJson);
+                            String MessageError = errorJ.getString("error");
+                            //FirebaseCrash.log("APIAuth Error :" + MessageError);
+                            //showToast("Error: " + MessageError);
+
+                        }
+
+                    } catch (Exception ee) {
+                        ee.printStackTrace();
+                    }
+
+
+                }
+
+
+            }) {
+
+                /**
+                 * Passing some request headers
+                 */
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json");
+                    // headers.put("key", "Value");
+                    return headers;
+                }
+            };
+
+            // Adding request to request queue
+
+
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
+        }
+    }
+
+    public void initializeTimerTask() {
+
+        timerTask = new TimerTask() {
+            public void run() {
+
+
+                handlerRefreshToken.post(new Runnable() {
+                    public void run() {
+
+
+                        RefreshToken();
+
+
+                    }
+                });
+            }
+        };
+    }
 
 
     private void showToast(String message) {
@@ -1621,6 +1845,9 @@ public void ImageToFile (String filename)
         StaticVar.MovieDetailsAct=this;
         StaticVar.densityPixel = getResources().getDisplayMetrics().density;
 
+        sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
+
+
 
         try{
             coverImageUrl = this.getIntent().getStringExtra("coverImageUrl");
@@ -2164,7 +2391,7 @@ try{
 
         super.onResume();
 
-
+        startTimer();
 
         if (mCastContext!=null)  mCastContext.getSessionManager().addSessionManagerListener(mSessionManagerListener,
                 CastSession.class);
@@ -2180,7 +2407,7 @@ try{
     protected void onPause() {
         //  mCastContext.removeCastStateListener(mCastStateListener);
         super.onPause();
-
+        stoptimertask();
        if (mCastContext!=null) mCastContext.getSessionManager().removeSessionManagerListener(mSessionManagerListener,
                 CastSession.class);
     }

@@ -6,11 +6,11 @@
 
     <string name="activity_login_welcome">THE BEST AFRO FILMS AND SERIES</string>
 
-    <string name="activity_login_username">Username</string>
+    <string name="activity_login_username">Email</string>
 
     <string name="activity_login_password">Password</string>
 
-    <string name="activity_login_connexion">CONNECT</string>
+    <string name="activity_login_connexion">SIGN IN</string>
 
     <string name="activity_login_new_account">SIGN UP</string>
 
@@ -82,7 +82,7 @@
 
     <string name="sample_list_load_error">One or more sample lists failed to load</string>
 
-    <string name="app_id">9922DB2A</string>
+    <string name="app_id">470F4570</string>
 
 
 
@@ -137,7 +137,7 @@
     <string name="VideoFrancaisTrack">French</string>
     <string name="verifpasswordmsg">Please check your password</string>
     <string name="resetpasswordmsg">An email was sent to you to complete the procedure</string>
-    <string name="deconnexion">Disconnection</string>
+    <string name="deconnexion">Log out</string>
     <string name="mydownload">My downloads</string>
     <string name="download">Download</string>
     <string name="askdownload">Are you sure you want to download the selected video?</string>

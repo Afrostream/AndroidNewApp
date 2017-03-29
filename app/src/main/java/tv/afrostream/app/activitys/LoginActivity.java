@@ -83,9 +83,12 @@ import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import tv.afrostream.app.services.AfrostreamBootWakefulService;
@@ -270,8 +273,9 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
 
 
         StaticVar.CountryCode=country;
+        String Language= Locale.getDefault().getLanguage().toUpperCase();
 
-        StaticVar.ApiUrlParams="?country="+country;
+        StaticVar.ApiUrlParams="?country="+country+"&language="+Language;
 
         makeLogin(Username,Password);
 
@@ -341,10 +345,24 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
 
+                        String currentDateandTime="";
+
+                        try {
 
 
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            currentDateandTime = sdf.format(new Date());
+                        }catch (Exception ee)
+                        {
+                            ee.getStackTrace();
+                        }
+
+
+                        StaticVar.date_token=currentDateandTime;
                         editor.putString("access_token", access_token);
                         editor.putString("refresh_token", refresh_token);
+                        editor.putString("expires_in", expires_in);
+                        editor.putString("date_token", currentDateandTime);
 
                         editor.commit();
                     }
@@ -950,6 +968,25 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
 
+                        String currentDateandTime="";
+
+                        try {
+
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            currentDateandTime = sdf.format(new Date());
+                        }catch (Exception ee)
+                        {
+                            ee.getStackTrace();
+                        }
+
+
+
+
+
+                        StaticVar.date_token=currentDateandTime;
+
+
                         editor.putString(StaticVar.usernamePref, Username);
                         editor.putString(StaticVar.passwordPref, Password);
 
@@ -957,6 +994,8 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
                         editor.putString("access_token", access_token);
                         editor.putString("refresh_token", refresh_token);
+                        editor.putString("expires_in", expires_in);
+                        editor.putString("date_token", currentDateandTime);
 
                         editor.commit();
                     }
@@ -1339,6 +1378,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
     public boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE );
+
         if (result == PackageManager.PERMISSION_GRANTED){
             return true;
         } else {
@@ -1347,6 +1387,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
     }
 
     public void requestPermission(){
+
         ActivityCompat.requestPermissions(LoginActivity.this,new String[]{
 
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -1640,6 +1681,8 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         txtForgetPassword.setEnabled(false);
 
 
+
+
        /* SharedPreferences.Editor editor = sharedpreferences.edit();
 
 
@@ -1777,6 +1820,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
                 bntLogin.setEnabled(false);
 
+
                 StaticVar.facebook_image_profil_url="";
 
                 String Username =txtUsername.getText().toString();
@@ -1787,7 +1831,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                     int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                     if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                         // Do something for lollipop and above versions
-                       checkPermission();
+
                         if (!checkPermission()) {
                             requestPermission();
                             return;
@@ -1892,12 +1936,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
 
 
-        if (autoLogin.equals("true"))
-        {
 
-            bntLogin.callOnClick();
-
-        }
 
         bntOrange.setEnabled(true);
         bntBouygue.setEnabled(true);
@@ -1940,7 +1979,12 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         }
 
 
+        if (autoLogin.equals("true"))
+        {
 
+            bntLogin.callOnClick();
+
+        }
 
 
 
@@ -1963,7 +2007,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                             // Do something for lollipop and above versions
-                            checkPermission();
+
                             if (!checkPermission()) {
                                 requestPermission();
                                 return;

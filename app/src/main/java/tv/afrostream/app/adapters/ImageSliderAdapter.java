@@ -166,15 +166,21 @@ public class ImageSliderAdapter extends PagerAdapter {
                     ee.printStackTrace();
                 }
 
-                Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                try {
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((MainActivity)view.getContext(), view, "movieimage");
+                    Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
 
-                intent.putExtra ("movieInfo",item.movie_all_Info.toString());
-                intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((MainActivity) view.getContext(), view, "movieimage");
 
-                ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+                    intent.putExtra("movieInfo", item.movie_all_Info.toString());
+                    intent.putExtra("coverImageUrl", item.coverImageUrl.toString());
+
+                    ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+                }catch (Exception ee)
+                {
+                    ee.getStackTrace();
+                }
 
 
 

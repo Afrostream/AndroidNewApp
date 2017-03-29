@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CountryCodePicker</string>
+    <string name="search_hint">Recherche...</string>
+    <string name="no_result_found">Pas de résultat</string>
+    <string name="select_country">Choisir un pays</string>
+    <string name="hint_phone">Téléphone</string>
+    <string name="notfound">Found not to show search</string>
+</resources>

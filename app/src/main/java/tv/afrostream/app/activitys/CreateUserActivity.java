@@ -20,10 +20,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.hbb20.CountryCodePicker;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import tv.afrostream.app.utils.StaticVar;
@@ -41,7 +43,8 @@ public class CreateUserActivity extends AppCompatActivity {
     EditText txtFirstname;
     EditText txtLastname;
     EditText txtEmail;
-EditText txtPhone;
+
+    CountryCodePicker txtPhone;
     EditText txtPassword;
     EditText txtRetypePassword;
     EditText telephone;
@@ -364,7 +367,8 @@ EditText txtPhone;
         txtRetypePassword=(EditText)this.findViewById(R.id.retypepassword);
 
 
-        txtPhone=(EditText)this.findViewById(R.id.phone);
+
+        txtPhone=(CountryCodePicker) this.findViewById(R.id.txtCountryPhone);
 
         bntCreateUser=(Button)this.findViewById(R.id.bnt_create_user);
 
@@ -393,7 +397,10 @@ EditText txtPhone;
         }
 
 
+        String Language= Locale.getDefault().getLanguage().toUpperCase();
 
+        if (Language.equals("FR"))
+        txtPhone.changeLanguage(CountryCodePicker.Language.FRENCH);
 
 
         bntCreateUser.setOnClickListener(new View.OnClickListener() {
@@ -405,7 +412,7 @@ EditText txtPhone;
                 String email=txtEmail.getText().toString();
                 String password=txtPassword.getText().toString();
                 String retypepassword=txtRetypePassword.getText().toString();
-                String tel=txtPhone.getText().toString();
+                String tel=txtPhone.getFullNumber();
 
                 if (firstname.equals("") ||lastname.equals("") ||email.equals("") ||password.equals("") ||retypepassword.equals("") )
                 {
@@ -420,7 +427,7 @@ EditText txtPhone;
                 }
 
 
-                if (tel.equals(""))
+                if (tel.equals("") || tel.length()<7)
                 {
                     showToast("Veuillez saisir votre numéro de téléphone");
                     return;

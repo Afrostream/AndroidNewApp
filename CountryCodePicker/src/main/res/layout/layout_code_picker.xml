@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/countryCodeHolder"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlClickConsumer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:padding="8dp">
+    <!--    <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView_selectedCountry"
+            android:layout_alignBottom="@+id/textView_selectedCountry"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/google_1x">-->
+    <LinearLayout
+        android:id="@+id/linear_flag_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/google_1x"
+        android:layout_marginRight="@dimen/google_1x">
+        <ImageView
+            android:layout_width="32dp"
+            android:visibility="gone"
+            android:layout_height="32dp" android:background="@drawable/phone" android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:id="@+id/image_flag"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="18dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/flag_france" />
+    </LinearLayout>
+
+    <!--</LinearLayout>-->
+    <TextView
+        android:id="@+id/textView_selectedCountry"
+        android:layout_width="wrap_content"
+        style="@style/EditText.Common"
+        android:layout_gravity="center"
+        android:layout_height="34dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/linear_flag_holder"
+        android:layout_toRightOf="@+id/linear_flag_holder"
+        android:maxLines="1"
+        android:text="(FR) +33"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/textView_selectedCountry"
+        android:layout_toRightOf="@+id/textView_selectedCountry"
+        android:adjustViewBounds="true"
+        android:alpha="0.6"
+        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+        android:tint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/phone"
+            style="@style/EditText.Common"
+
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@+id/imageView_arrow"
+            android:layout_toRightOf="@+id/imageView_arrow"
+
+
+            android:inputType="phone"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
+            android:hint="@string/hint_phone"
+
+            android:gravity="center"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

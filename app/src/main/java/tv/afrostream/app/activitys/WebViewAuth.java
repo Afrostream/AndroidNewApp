@@ -1,7 +1,9 @@
 package tv.afrostream.app.activitys;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
@@ -22,6 +24,9 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import tv.afrostream.app.R;
 import tv.afrostream.app.utils.StaticVar;
 
@@ -33,6 +38,7 @@ import tv.afrostream.app.utils.StaticVar;
 public class WebViewAuth extends AppCompatActivity {
 
     private Toast toast;
+    SharedPreferences sharedpreferences;
     private void showToast(String message) {
         if (toast != null) {
             toast.cancel();
@@ -81,6 +87,38 @@ public class WebViewAuth extends AppCompatActivity {
                         StaticVar.FirstLaunch=true;
                         StaticVar.access_token=access_token;
                         StaticVar.refresh_token=refresh_token;
+                        StaticVar.expires_in=expires_in;
+
+
+                        synchronized (this) {
+
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                            String currentDateandTime="";
+
+                            try {
+
+
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                currentDateandTime = sdf.format(new Date());
+                            }catch (Exception ee)
+                            {
+                                ee.getStackTrace();
+                            }
+
+
+
+                            StaticVar.date_token=currentDateandTime;
+
+
+                            editor.putString("access_token", access_token);
+                            editor.putString("refresh_token", refresh_token);
+                            editor.putString("expires_in", expires_in);
+                            editor.putString("date_token", currentDateandTime);
+
+                            editor.commit();
+                        }
+
 
                         final Intent intent = new Intent(WebViewAuth.this, MainActivity.class);
 
@@ -193,6 +231,7 @@ public class WebViewAuth extends AppCompatActivity {
         }
 
 
+        sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
 
     }
 }

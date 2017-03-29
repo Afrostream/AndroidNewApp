@@ -1,1 +1,1 @@
-include ':app', ':creditcarddesign', ':core', ':commons'
+include ':app', ':creditcarddesign', ':core', ':commons', ':CountryCodePicker'

@@ -58,6 +58,7 @@ public class StaticVar {
     public static String refresh_token="";
     public static String expires_in="";
     public static String token_type="";
+    public static String date_token="";
 
     public static ListFavorisFragment favFragment;
 
