@@ -126,13 +126,13 @@ public class LoginActivity extends AppCompatActivity {
     ImageView bntOrange;
     ImageView bntBouygue;
     ImageView imageback;
-    private Toast toast;
+
     String backimageurl="";
     String autoLogin="";
 
     ProgressBar loading_spinner=null;
     public String  TAG=LoginActivity.class.getSimpleName();
-
+    private Toast toast;
 
     SharedPreferences sharedpreferences;
 

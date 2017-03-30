@@ -1726,8 +1726,8 @@ drawer.closeDrawer(GravityCompat.START);
         {
             if (title.equals(getString( R.string.CGU)))
             {
-                Intent nb = new Intent(MainActivity.this, WebViewAuth.class);
-                nb.putExtra("url", "https://www.afrostream.tv/"+StaticVar.CountryCode.toLowerCase()+"/cgu");
+                Intent nb = new Intent(MainActivity.this, CguLegalsActivity.class);
+                nb.putExtra("typetxt", "cgu");
 
 
                 startActivity(nb);
@@ -1737,8 +1737,8 @@ drawer.closeDrawer(GravityCompat.START);
 
             if (title.equals(getString(R.string.MentionsLegal)))
             {
-                Intent nb = new Intent(MainActivity.this, WebViewAuth.class);
-                nb.putExtra("url", "https://www.afrostream.tv/"+StaticVar.CountryCode.toLowerCase()+"/legals");
+                Intent nb = new Intent(MainActivity.this, CguLegalsActivity.class);
+                nb.putExtra("typetxt", "legals");
 
 
                 startActivity(nb);

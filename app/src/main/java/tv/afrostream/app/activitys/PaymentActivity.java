@@ -727,10 +727,13 @@ try {
 
 
 
-                String url = "https://www.afrostream.tv/"+StaticVar.CountryCode.toLowerCase()+"/cgu";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+                Intent nb = new Intent(PaymentActivity.this, CguLegalsActivity.class);
+                nb.putExtra("typetxt", "cgu");
+
+                nb.putExtra("ParentClassSource", "tv.afrostream.app.activitys.PaymentActivity");
+
+
+                startActivity(nb);
 
             }
         });
