@@ -49,6 +49,8 @@
         android:name=".AppController"
         android:theme="@style/AppTheme">
 
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
+
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>

@@ -69,6 +69,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import tv.afrostream.app.adapters.SerieSaisonListAdapter;
+import tv.afrostream.app.fragments.MyAccountFragment;
 import tv.afrostream.app.fragments.MyDownloadFragment;
 import tv.afrostream.app.models.SerieItemModel;
 import tv.afrostream.app.models.SerieSaisonModel;
@@ -113,6 +114,14 @@ public SharedPreferences sharedpreferences;
 
     Timer timerRefreshToken;
     TimerTask timerTask;
+    public String subPeriodStartedDate="";
+    public String subPeriodEndsDate="";
+    public String inTrial="";
+    public String PlanInternalPlanUuid="";
+    public String PlanName="";
+    public String PlanDescription="";
+    public String PlanAmount="";
+    public String PlanCurrency="";
 
     final Handler handlerRefreshToken = new Handler();
 
@@ -515,6 +524,10 @@ public SharedPreferences sharedpreferences;
                 if (user_last_name.equals("null"))user_last_name="";
                 if (user_picture_url.equals("null"))user_picture_url="";
                 if (user_email.equals("null"))user_email="";
+                StaticVar.user_first_name=user_first_name;
+                StaticVar.user_last_name=user_last_name;
+                StaticVar.user_picture_url=user_picture_url;
+                StaticVar.user_email=user_email;
 
                 StaticVar.user_id=user_id;
 
@@ -614,9 +627,28 @@ public SharedPreferences sharedpreferences;
 
                         String isActive=subscription.getString("isActive");
 
+                        inTrial=subscription.getString("inTrial");
+                        StaticVar.Subscription_isCancelable=subscription.getString("isCancelable");
+
+                        StaticVar.Subscription_subscriptionBillingUuid=subscription.getString("subscriptionBillingUuid");
+
+                        StaticVar.Subscription_subStatus=subscription.getString("subStatus");
+
+
                         if (isActive.equals("yes")) {
                             StaticVar.subscription=true;
                             Log.e("GetInfoUser","6");
+
+                            subPeriodStartedDate=subscription.getString("subPeriodStartedDate");
+                            subPeriodEndsDate=subscription.getString("subPeriodEndsDate");
+
+
+                             PlanInternalPlanUuid=subscription.getJSONObject("internalPlan").getString("internalPlanUuid");
+                             PlanName=subscription.getJSONObject("internalPlan").getString("name");
+                             PlanDescription=subscription.getJSONObject("internalPlan").getString("description");
+                            PlanAmount=subscription.getJSONObject("internalPlan").getString("amount");
+                            PlanCurrency=subscription.getJSONObject("internalPlan").getString("currency");
+
 
                             /*if (findViewById(R.id.main_fragment_container) != null) {
                                 FrameLayout nb=(FrameLayout)findViewById(R.id.main_fragment_container);
@@ -764,7 +796,7 @@ public SharedPreferences sharedpreferences;
             loading_spinner.setVisibility(View.GONE);
 
     }
-    private void makeGetUserInfo(final String access_token) {
+    public void makeGetUserInfo(final String access_token) {
 
 
         if (access_token.equals("") )
@@ -925,6 +957,7 @@ public SharedPreferences sharedpreferences;
         mn.clear();
         mn.add(R.string.home).setIcon(R.drawable.home);
         mn.add(R.string.listefavoris).setIcon(R.drawable.favmenu);
+        mn.add(R.string.moncompte).setIcon(R.drawable.ic_notif);
         //mn.add(R.string.mydownload).setIcon(R.drawable.downloadicon);
         final SubMenu catMenu = mn.addSubMenu(R.string.categories).setIcon(R.drawable.categories);
 
@@ -1770,8 +1803,7 @@ drawer.closeDrawer(GravityCompat.START);
                     ft.commit();
                 }
 
-            }else if (title.equals(getString( R.string.listefavoris)))
-            {
+            }else if (title.equals(getString( R.string.listefavoris))) {
 
                 drawer.closeDrawer(GravityCompat.START);
                 if (findViewById(R.id.main_fragment_container) != null) {
@@ -1782,6 +1814,20 @@ drawer.closeDrawer(GravityCompat.START);
 
                     ft.commit();
                 }
+            }
+
+                else if (title.equals(getString( R.string.moncompte)))
+                {
+
+                    drawer.closeDrawer(GravityCompat.START);
+                    if (findViewById(R.id.main_fragment_container) != null) {
+
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                        ft.replace(R.id.main_fragment_container, new MyAccountFragment());
+
+                        ft.commit();
+                    }
 
             }else if (title.equals(getString(R.string.mydownload)))
             {

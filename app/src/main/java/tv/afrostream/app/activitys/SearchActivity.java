@@ -331,7 +331,7 @@ public class SearchActivity  extends AppCompatActivity {
 
 
 
-                handler.postDelayed(nb,1000);
+                handler.postDelayed(nb,700);
 
 
 

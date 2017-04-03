@@ -654,25 +654,29 @@ try {
 
     @Override
     public void onClick(View view) {
-        if (view == retryButton) {
-            initializePlayer();
-        } else if (view.getParent() == debugRootView || view.getParent() == view_topright ) {
-            MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();
-            if (mappedTrackInfo != null) {
-                String tag=((ImageView) view).getTag().toString();
-                String title="";
-                if (tag.equals("0"))
-                    title=getString(R.string.videoqualite);
-                else  if (tag.equals("1"))
-                    title=getString(R.string.AudioLanguage);
-                else if (tag.equals("2"))
-                    title=getString(R.string.videocaption);
+        try {
+            if (view == retryButton) {
+                initializePlayer();
+            } else if (view.getParent() == debugRootView || view.getParent() == view_topright) {
+                MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();
+                if (mappedTrackInfo != null) {
+                    String tag = ((ImageView) view).getTag().toString();
+                    String title = "";
+                    if (tag.equals("0"))
+                        title = getString(R.string.videoqualite);
+                    else if (tag.equals("1"))
+                        title = getString(R.string.AudioLanguage);
+                    else if (tag.equals("2"))
+                        title = getString(R.string.videocaption);
 
 
-
-                trackSelectionHelper.showSelectionDialog(this, title,
-                        trackSelector.getCurrentMappedTrackInfo(), (int) view.getTag());
+                    trackSelectionHelper.showSelectionDialog(this, title,
+                            trackSelector.getCurrentMappedTrackInfo(), (int) view.getTag());
+                }
             }
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
         }
     }
 

@@ -178,6 +178,19 @@
     <string name="PleaseAcceptPayCondition">Veuillez accepter les conditions de paiement</string>
     <string name="desactiver">Désactiver</string>
     <string name="auto">Auto</string>
+    <string name="moncompte">Mon compte</string>
+    <string name="abonnement">Abonnement :</string>
+    <string name="cardholdererror">Veuillez saisir le nom du titulaire de la carte</string>
+    <string name="cardnumbererror">Veuillez saisir votre numéro de carte</string>
+    <string name="expirycarderror">Veuillez saisir la date d\'éxpiration</string>
+    <string name="CVCCardError">Veuillez saisir le code de la carte</string>
+    <string name="date_start">Date début :</string>
+    <string name="date_end">Date fin :</string>
+    <string name="cancel_subscription">Annuler l\'abonnement</string>
+    <string name="canceled_subscription">Votre abonnement a bien été annulé</string>
+    <string name="cancel_title_subscription">Annuler l\'abonnement</string>
+    <string name="cancel_question_subscription">Êtes-vous sûr de vouloir annuler votre abonnement ? le service sera actif jusqu\'à la date du : </string>
+    <string name="subsription_cancelled">Votre abonnement a été annulé, vous aurez accès au service jusqu\'à la date du : </string>
 
 
 </resources>

@@ -178,4 +178,17 @@
     <string name="PleaseAcceptPayCondition">Please accept payment terms</string>
     <string name="desactiver">Disable</string>
     <string name="auto">Auto</string>
+    <string name="moncompte">My account</string>
+    <string name="abonnement">Abonnement :</string>
+    <string name="cardholdererror">Please fill card holder name</string>
+    <string name="cardnumbererror">Please fill the card number</string>
+    <string name="expirycarderror">Please fill the expiry card date</string>
+    <string name="CVCCardError">Please fill card code number</string>
+    <string name="date_start">Start date :</string>
+    <string name="date_end">End date :</string>
+    <string name="cancel_subscription">Cancel subscription</string>
+    <string name="canceled_subscription">Your subscription has been canceled</string>
+    <string name="cancel_title_subscription">Cancel subscription</string>
+    <string name="cancel_question_subscription">Are you sure you want to cancel your subscription? The service will be active until the date of:</string>
+    <string name="subsription_cancelled">Your subscription has been canceled, you will have access to the service until the date of: </string>
 </resources>

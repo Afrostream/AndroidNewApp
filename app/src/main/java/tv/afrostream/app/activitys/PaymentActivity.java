@@ -253,7 +253,7 @@ int ListPosition=0;
 
 
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/internalplans"+"?Country="+StaticVar.CountryCode; //"?filterEnabled=true&filterUserReferenceUuid=249149&filterCountry=FR&filterClientId=" +StaticVar.clientApiID; //+StaticVar.ApiUrlParams;
+        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/internalplans"+StaticVar.ApiUrlParams;  //"?filterCountry="+StaticVar.CountryCode+"&filterEnabled=true"+"&filterClientId=" +StaticVar.clientApiID;
 
         //urlJsonObj=urlJsonObj.replace("https://afrostream-backend.herokuapp.com","https://api.afrostream.tv");
 
@@ -343,7 +343,7 @@ int ListPosition=0;
 
 
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/coupons"+"?coupon="+couponCode;
+        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/coupons"+"?coupon="+couponCode+StaticVar.ApiUrlParams;
 
 
 
@@ -1032,6 +1032,27 @@ try {
             String cardNumber = data.getStringExtra(CreditCardUtils.EXTRA_CARD_NUMBER);
             String expiry = data.getStringExtra(CreditCardUtils.EXTRA_CARD_EXPIRY);
             String cardCVC = data.getStringExtra(CreditCardUtils.EXTRA_CARD_CVV);
+
+            if (name.equals("") || name.equals(""))
+            {
+                showToast(getString(R.string.cardholdererror));
+                return;
+            }
+            if (cardNumber.equals("") || cardNumber.equals(""))
+            {
+                showToast(getString(R.string.cardnumbererror));
+                return;
+            }
+            if (expiry.equals("") || expiry.equals(""))
+            {
+                showToast(getString(R.string.expirycarderror));
+                return;
+            }
+            if (cardCVC.equals("") || cardCVC.equals(""))
+            {
+                showToast(getString(R.string.CVCCardError));
+                return;
+            }
 
             String nb[] =expiry.split("/");
             int cardExpMonth= Integer.parseInt(nb[0]) ;

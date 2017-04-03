@@ -31,10 +31,12 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -363,8 +365,8 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
     }
 
 
-    public void DoResponseSliderMoviesHome(JSONArray response, final ViewPager viewPager){
-        Log.d(TAG, response.toString());
+    public void DoResponseSliderMoviesHome(JSONArray responseJ, final ViewPager viewPager){
+
 
 
 
@@ -372,6 +374,10 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
 
             // Menu mn=  navigationView.getMenu();
             // mn.clear();
+
+            JSONObject res=responseJ.getJSONObject(0);
+
+            JSONArray response=res.getJSONArray("adSpots");
 
             ArrayList<MovieItemModel> MoviesList = new ArrayList<MovieItemModel>();
             for (int i = 0; i < response.length(); i++) {
@@ -504,7 +510,8 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
 
 
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/categorys/1/spots"+StaticVar.ApiUrlParams;
+        String urlJsonObj= StaticVar.BaseUrl+"/api/categorys"+StaticVar.ApiUrlParams+"&type=carrousel&populate=adSpots,adSpots.logo,adSpots.poster,adSpots.thumb";
+
 
 
         Cache cache = AppController.getInstance().getRequestQueue().getCache();
@@ -527,9 +534,8 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
         }
         else{
 
-
-            JsonArrayRequest req = new JsonArrayRequest(urlJsonObj,
-                    new Response.Listener<JSONArray>() {
+            JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET,
+                    urlJsonObj, null, new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
 
@@ -544,9 +550,14 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                   //  loading_spinner.setVisibility(View.GONE);
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
                     try {
-                        String errorStr=error.getMessage();
-                        if (errorStr.length()>300)errorStr=errorStr.substring(0,300);
-                        showToast("Error " + errorStr );
+                        if(error.networkResponse != null && error.networkResponse.data != null){
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson=error2.getMessage();
+                            JSONObject errorJ=new JSONObject(errorJson);
+                            String MessageError=errorJ.getString("error");
+                            showToast("Error: " + MessageError);
+
+                        }
                     }catch (Exception ee)
                     {
                         ee.printStackTrace();

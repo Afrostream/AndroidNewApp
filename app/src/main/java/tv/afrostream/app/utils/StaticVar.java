@@ -81,5 +81,18 @@ public class StaticVar {
  public static double densityPixel = 1;
 
    public static String path_decrypt_download_file="";
+    public static String user_picture_url="";
+
+    public static String user_first_name="";
+    public static String user_last_name="";
+    public static String user_email="";
+
+
+    public static String  Subscription_subscriptionBillingUuid="";
+    public static String  Subscription_isCancelable="";
+    public static String Subscription_subStatus="";
+
+
+
 
 }
