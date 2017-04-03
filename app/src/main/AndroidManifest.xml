@@ -166,6 +166,7 @@
         <activity
             android:name=".activitys.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
