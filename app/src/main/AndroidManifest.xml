@@ -193,6 +193,7 @@
         <activity
             android:name=".activitys.MovieDetailsActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
 
             <meta-data

@@ -120,7 +120,7 @@ public void CancelSubscription(String subscriptionUuid)
 
                 showToast(getString(R.string.canceled_subscription));
 
-
+                txtcancel.setVisibility(View.VISIBLE);
 
 
 
@@ -317,10 +317,10 @@ public void CancelSubscription(String subscriptionUuid)
         {
             bnt_cancel_subscription.setVisibility(View.GONE);
             txtcancel.setVisibility(View.VISIBLE);
-            txtcancel.setText(getString(R.string.subsription_cancelled)+date2);
+
         }
 
-
+        txtcancel.setText(getString(R.string.subsription_cancelled)+" "+date2);
         final String finalDate2 = date2;
         bnt_cancel_subscription.setOnClickListener(new View.OnClickListener() {
             @Override

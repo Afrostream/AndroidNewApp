@@ -268,7 +268,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             pathVideo +=filename+ ".afv";
 
             pDialog.dismiss();
-            readVideoFromFile (pathVideo);
+            readVideoFromFile (pathVideo,false);
 
 
         }
@@ -276,7 +276,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
 
-    public void readVideoFromFile(String fpathOut)
+    public void readVideoFromFile(String fpathOut,Boolean isWebLink)
     {
         String extension = "mp4";
         String name=titleMovie;
@@ -298,8 +298,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ArrayList<String> drmKeyRequestPropertiesList = new ArrayList<>();
 
         drmKeyRequestProperties = drmKeyRequestPropertiesList.toArray(new String[0]);
+        String uri="";
+        if (isWebLink==false)
 
-        String uri="file:///"+fpathOut;
+         uri="file:///"+fpathOut;
+        else
+             uri=fpathOut;
+
         playerPosition=0;
 
 
@@ -1708,6 +1713,20 @@ public void ImageToFile (String filename)
     public void DownloadTrailer()
     {
 
+
+        if (!videoMp4Trailer.equals("") && !videoMp4Trailer.equals("null")) {
+            try {
+
+
+                readVideoFromFile(videoMp4Trailer,true);
+                return;
+
+            } catch (Exception ee) {
+
+            }
+        }
+        /*
+
         final String filename="afro_local_trailer_"+movieID;
 
         String pathVideo = Environment.getExternalStorageDirectory() + File.separator + StaticVar.LocalFolderName + File.separator+filename+ File.separator;
@@ -1729,7 +1748,7 @@ public void ImageToFile (String filename)
 
                    if (t== vi.length()) {
 
-                       readVideoFromFile(pathVideo);
+                       readVideoFromFile(pathVideo,false);
                        return;
                    }
                 }catch (Exception ee)
@@ -1805,6 +1824,7 @@ public void ImageToFile (String filename)
 
             }
         });
+        */
     }
 
     @Override
