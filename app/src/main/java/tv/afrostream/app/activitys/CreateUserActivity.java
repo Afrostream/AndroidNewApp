@@ -115,10 +115,8 @@ public class CreateUserActivity extends AppCompatActivity {
                     String token_type="";
                     token_type=response.getString("token_type");
 
-                    StaticVar.access_token=access_token;
-                    StaticVar.refresh_token=refresh_token;
-                    StaticVar.expires_in=expires_in;
-                    StaticVar.token_type=token_type;
+                    StaticVar.access_token_api=access_token;
+
 
 
 
@@ -227,10 +225,15 @@ public class CreateUserActivity extends AppCompatActivity {
                     String expires_in="";
                     expires_in=response.getString("expires_in");
 
+                    String refresh_token="";
+                    refresh_token=response.getString("refresh_token");
+
+
 
                     StaticVar.access_token=access_token;
 
                     StaticVar.expires_in=expires_in;
+                    StaticVar.refresh_token=refresh_token;
 
 
 

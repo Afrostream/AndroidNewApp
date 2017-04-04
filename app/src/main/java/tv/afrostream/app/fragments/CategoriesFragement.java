@@ -108,7 +108,7 @@ public class CategoriesFragement extends Fragment {
                         try{
                         JSONObject posterMovie  =movie.getJSONObject("poster");
                         String urlImageMovie= posterMovie.getString("imgix")+"?&crop=entropy&fit=min&w=130&h=120&q=90&fm=jpg&facepad=1&crop=entropy&auto=compress&dpr="+StaticVar.densityPixel;
-                        MoviesListFavoris.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie));
+                        MoviesListFavoris.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie,labelMovie));
 
                         }catch (Exception ee)
                         {
@@ -445,7 +445,7 @@ public class CategoriesFragement extends Fragment {
                         try{
                         JSONObject posterMovie  =movie.getJSONObject("poster");
                         String urlImageMovie= posterMovie.getString("imgix")+"?&crop=entropy&fit=min&w=130&h=120&q=100&fm=jpg&facepad=1&auto=format&dpr="+StaticVar.densityPixel;
-                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie));
+                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie,labelMovie));
                         }catch (Exception ee)
                         {
                             ee.printStackTrace();

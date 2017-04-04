@@ -12,6 +12,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -86,6 +87,10 @@ public class ImageSliderAdapter extends PagerAdapter {
 
 
 
+
+
+
+
               /*  Glide.with(context)
                 .load(GalImages.get(position).coverImageUrl)
                 .centerCrop()
@@ -119,11 +124,16 @@ public class ImageSliderAdapter extends PagerAdapter {
             ((TextView)itemView.findViewById(R.id.txtMovieTitle)).setVisibility(View.VISIBLE);
         }
 
-        if (GalImages.get(position).label.equals("null"))
-            ((TextView)itemView.findViewById(R.id.txtMovieLabel)).setVisibility(View.GONE);
+        if (GalImages.get(position).label.equals("null") || GalImages.get(position).label.equals("")) {
+            ((TextView) itemView.findViewById(R.id.txtMovieLabel)).setVisibility(View.GONE);
+            ((FrameLayout) itemView.findViewById(R.id.layoutlabel)).setVisibility(View.GONE);
+
+        }
+
         else {
             ((TextView) itemView.findViewById(R.id.txtMovieLabel)).setText(GalImages.get(position).label);
             ((TextView)itemView.findViewById(R.id.txtMovieLabel)).setVisibility(View.VISIBLE);
+            ((FrameLayout) itemView.findViewById(R.id.layoutlabel)).setVisibility(View.VISIBLE);
         }
 
 
@@ -175,6 +185,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
                     intent.putExtra("movieInfo", item.movie_all_Info.toString());
                     intent.putExtra("coverImageUrl", item.coverImageUrl.toString());
+                    intent.putExtra ("label",item.categorie.toString());
 
                     ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
                 }catch (Exception ee)

@@ -152,13 +152,12 @@ public class MyDownloadActivity  extends AppCompatActivity {
                                     labelMovie = movie.getString("genre");
                                 }catch (Exception ee)
                                 {
-                                    ee.printStackTrace();
                                 }
                                 try{
                                     JSONObject posterMovie = movie.getJSONObject("poster");
                                     String urlImageMovie = posterMovie.getString("imgix") + "?&crop=entropy&fit=min&w=130&h=120&q=100&fm=jpg&facepad=1&crop=faces&auto=format";
 
-                                    MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,PathImage,Path,PathVideo));
+                                    MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,PathImage,Path,PathVideo,labelMovie));
                                 }catch (Exception ee)
                                 {
                                     ee.printStackTrace();

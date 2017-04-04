@@ -203,7 +203,7 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                         try {
                             JSONObject posterMovie = movie.getJSONObject("poster");
                             String urlImageMovie = posterMovie.getString("imgix") + "?&crop=entropy&fit=min&w=300&h=250&q=75&fm=jpg&auto=format&dpr="+StaticVar.densityPixel;
-                            MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie));
+                            MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,label));
                         }catch (Exception ee)
                         {
                             ee.printStackTrace();
@@ -393,7 +393,18 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                         String titleMovie=movie.getString("title");
                         String labelMovie="";
                         try{
-                         labelMovie=movie.getString("genre");
+
+                            JSONArray cat=movie.getJSONArray("categorys");
+                            String categorie="";
+
+                            try {
+
+                                categorie = cat.getJSONObject(0).getString("label");
+                            }catch (Exception ee)
+                            {}
+
+
+                            labelMovie=categorie;
                         }catch (Exception ee)
                         {
                             ee.printStackTrace();
@@ -401,7 +412,7 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                         try{
                         JSONObject posterMovie  =movie.getJSONObject("poster");
                         String urlImageMovie= posterMovie.getString("imgix")+"?&crop=entropy&fit=min&w=600&h=400&q=90&fm=jpg&&auto=format&dpr="+StaticVar.densityPixel;
-                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie));
+                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie,labelMovie));
                         }catch (Exception ee)
                         {
                             ee.printStackTrace();
@@ -510,7 +521,7 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
 
 
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/categorys"+StaticVar.ApiUrlParams+"&type=carrousel&populate=adSpots,adSpots.logo,adSpots.poster,adSpots.thumb";
+        String urlJsonObj= StaticVar.BaseUrl+"/api/categorys"+StaticVar.ApiUrlParams+"&type=carrousel&populate=adSpots,adSpots.logo,adSpots.poster,adSpots.thumb,adSpots.categorys";
 
 
 

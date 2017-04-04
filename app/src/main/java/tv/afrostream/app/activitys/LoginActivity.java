@@ -1607,8 +1607,9 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         imageback=(ImageView) this.findViewById(R.id.imageback);
 
 
-        try {
 
+        try {
+            AppController.getInstance().getRequestQueue().getCache().clear();
             synchronized (this) {
                 sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -2000,7 +2001,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
                 try {
 
-                    AppController.getInstance().getRequestQueue().getCache().clear();
+
 
 
                     try {

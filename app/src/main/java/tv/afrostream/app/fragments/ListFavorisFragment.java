@@ -101,7 +101,7 @@ public class ListFavorisFragment extends Fragment {
                         JSONObject posterMovie = movie.getJSONObject("poster");
                         String urlImageMovie = posterMovie.getString("imgix") + "?&crop=entropy&fit=min&w=130&h=120&q=100&fm=jpg&facepad=1&crop=entropy&auto=format&dpr="+StaticVar.densityPixel;
                         ;
-                        MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie));
+                        MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,labelMovie));
                     }catch (Exception ee)
                     {
                         ee.printStackTrace();

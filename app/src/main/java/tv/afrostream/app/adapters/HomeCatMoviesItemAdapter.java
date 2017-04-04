@@ -99,7 +99,7 @@ public class HomeCatMoviesItemAdapter extends RecyclerView.Adapter {
                 intent.putExtra ("movieInfo",item.movie_all_Info.toString());
                 intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
 
-
+                intent.putExtra ("label",item.categorie);
 
                 ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
 

@@ -174,7 +174,7 @@ public Boolean ifExistFav(ArrayList<MovieItemModel> favlist,MovieItemModel movie
 
                 intent.putExtra ("movieInfo",item.movie_all_Info.toString());
                 intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
-
+                intent.putExtra ("label",item.categorie.toString());
 
                 ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
 

@@ -151,7 +151,7 @@ public class HomeLocalFragment extends Fragment  implements  ViewPager.OnPageCha
 
                             JSONObject posterMovie = movie.getJSONObject("poster");
                             String urlImageMovie = posterMovie.getString("imgix") + "?&crop=entropy&fit=min&w=250&h=200&q=100&fm=jpg&facepad=1&crop=entropy&dpr="+StaticVar.densityPixel;
-                            MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,pathImage,"",""));
+                            MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,pathImage,"","",labelMovie));
                         }catch (Exception ee)
                         {
                             ee.printStackTrace();
@@ -266,7 +266,7 @@ public class HomeLocalFragment extends Fragment  implements  ViewPager.OnPageCha
                     try{
                         JSONObject posterMovie  =movie.getJSONObject("poster");
                         String urlImageMovie= posterMovie.getString("imgix")+"?&crop=entropy&fit=min&w=550&h=350&q=100&fm=jpg&facepad=1&crop=entropy&auto=format&dpr="+StaticVar.densityPixel;
-                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie,pathImage,"",""));
+                        MoviesList.add(new MovieItemModel(titleMovie,labelMovie,urlImageMovie,movie,pathImage,"","",labelMovie));
                     }catch (Exception ee)
                     {
                         ee.printStackTrace();

@@ -943,6 +943,7 @@ public SharedPreferences sharedpreferences;
         catCGU.add(R.string.MentionsLegal);
         catCGU.add(R.string.CGU);
         catCGU.add(R.string.contact);
+        catCGU.add("");
 
 
 

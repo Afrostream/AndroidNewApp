@@ -328,7 +328,7 @@ public void CancelSubscription(String subscriptionUuid)
 
                 final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                         .title(R.string.cancel_title_subscription)
-                        .content(R.string.cancel_question_subscription + finalDate2)
+                        .content( getActivity().getString(R.string.cancel_question_subscription )+ finalDate2)
                         .positiveText(R.string.yes)
                         .negativeText(R.string.no)
                         .show();

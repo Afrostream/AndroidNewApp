@@ -111,7 +111,7 @@ public class SearchActivity  extends AppCompatActivity {
                     JSONObject posterMovie = movie.getJSONObject("poster");
                     String urlImageMovie = posterMovie.getString("imgix") + "?&crop=entropy&fit=min&w=350&h=300&q=65&fm=jpg&facepad=1&crop=faces&auto=format";
                     ;
-                    MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie));
+                    MoviesList.add(new MovieItemModel(titleMovie, labelMovie, urlImageMovie, movie,labelMovie));
                 }catch (Exception ee)
                 {
                     ee.printStackTrace();

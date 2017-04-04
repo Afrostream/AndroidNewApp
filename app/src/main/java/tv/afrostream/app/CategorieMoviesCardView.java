@@ -41,9 +41,9 @@ public class CategorieMoviesCardView extends FrameLayout {
     public void displayItem(  MovieItemModel movieItem) {
         ((TextView)findViewById(R.id.txtMovieTitle)).setText(movieItem.title);
 
-        ((TextView)findViewById(R.id.txtMovieDescription)).setText(movieItem.label);
+       // ((TextView)findViewById(R.id.txtMovieDescription)).setText(movieItem.label);
 
-
+        ((TextView)findViewById(R.id.txtMovieDescription)).setText("");
 
         ImageView mNetworkImageView =(ImageView)findViewById(R.id.NetworkImageView);
        /* Glide.with(context)

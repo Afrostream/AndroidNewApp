@@ -1874,6 +1874,12 @@ public void ImageToFile (String filename)
         }catch (Exception ee)
         {}
 
+
+        try{
+            labelMovie = this.getIntent().getStringExtra("label");
+        }catch (Exception ee)
+        {}
+
         try {
 
             String movieInfoString = this.getIntent().getStringExtra("movieInfo");
@@ -1887,7 +1893,18 @@ public void ImageToFile (String filename)
             movieID=movieInfo.getString("_id");
              titleMovie=movieInfo.getString("title");
             try {
-                labelMovie = movieInfo.getString("genre");
+
+                JSONArray cat=movieInfo.getJSONArray("categorys");
+                String categorie="";
+
+                try {
+
+                    categorie = cat.getJSONObject(0).getString("label");
+                }catch (Exception ee)
+                {}
+
+
+                //labelMovie = categorie;
             }catch (Exception ee){
                 ee.printStackTrace();
             }
@@ -2085,7 +2102,9 @@ try{
 
         TextView movielabel = (TextView ) findViewById(R.id.txtMovieLabel);
 
-        if(labelMovie.equals("") || labelMovie.equals("null"))
+
+
+      if(labelMovie.equals("") || labelMovie.equals("null"))
             movielabel.setVisibility(GONE);
         else {
             movielabel.setVisibility(VISIBLE);
@@ -2122,6 +2141,8 @@ try{
         }
 
         TextView txtMovieSc= (TextView) findViewById(R.id.txtMovieSc);
+
+        txtMovieSc.setVisibility(GONE); //Suite a la demande de Ludo pour reglé le probleme d'UK version
 
         String st="";
         if (!movieSchedule.equals("") && !movieSchedule.equals("null"))st= " - "+movieSchedule;

@@ -32,6 +32,7 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/layoutlabel"
             android:background="@drawable/shapebutton"
             android:layout_marginLeft="15dp"
 
