@@ -200,4 +200,6 @@
     <string name="ok">OK</string>
     <string name="payment_detect">Nous vous confirmons que votre paiement a bien été pris en compte. Malheureusement une erreur est survenue lors de la création de votre abonnement, nous essayons actuellement d\’en identifier la source. Pour toute question veuillez écrire à support@afrostream.tv</string>
     <string name="error_subscribe">Error Inscription:</string>
+    <string name="update">Mise a jour</string>
+    <string name="newversiondetect">Nouvelle version détectée, veuillez mettre à jour votre application via le play store google</string>
 </resources>

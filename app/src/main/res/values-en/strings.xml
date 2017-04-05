@@ -201,4 +201,6 @@
     <string name="ok">ok</string>
     <string name="payment_detect">We confirm that your payment has been taken into account. Unfortunately an error occurred while creating your subscription, we are currently trying to identify the source. If you have any questions please contact support@afrostream.tv</string>
     <string name="error_subscribe">Error Subscription:</string>
+    <string name="update">App Update</string>
+    <string name="newversiondetect">New version detected, please update your application via google play store</string>
 </resources>

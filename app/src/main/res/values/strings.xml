@@ -201,6 +201,8 @@
     <string name="ok">ok</string>
     <string name="payment_detect">Nous avons détecté un paiement effectué, une tentative d\'abonnement à notre service est lancé automatique, vérifier que votre connexion internet est bien activée</string>
     <string name="error_subscribe">Error inscription:</string>
+    <string name="update">Mise a jour</string>
+    <string name="newversiondetect">Nouvelle version détectée, veuillez mettre à jour votre application via le play store google</string>
 
 
 </resources>

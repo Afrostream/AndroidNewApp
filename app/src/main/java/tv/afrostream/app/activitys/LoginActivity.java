@@ -684,6 +684,16 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
+    public  void openAppInGooglePlay(Context context) {
+        final String appPackageName = context.getPackageName();
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException e) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+    }
+
+
     private void makeGetBackgroundConfig(final ImageView imgMovie) {
 
 
@@ -698,77 +708,135 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
 
                 @Override
                 public void onResponse(JSONObject response) {
+                    String appVersion="";
+                    try {
+                        try {
+                            appVersion = response.getString("appVersion");
+                        }catch (Exception e)
+                        {
+
+                        }
+
+                        if (!appVersion.equals(""))
+
+                        {
+                            int verApp=0;
+                            int verInstalledApp=0;
+                                 try {
+                                     verApp = Integer.parseInt(appVersion);
+                                 }catch (Exception a)
+                                 {}
+
+                            try {
+                                verInstalledApp = Integer.parseInt( StaticVar.app_version_code);
+                            }catch (Exception a)
+                            {}
+
+                            if (verInstalledApp<verApp)
+                            {
+                                final MaterialDialog dialog=new MaterialDialog.Builder(LoginActivity.this)
+                                        .title(R.string.update)
+                                        .content(LoginActivity.this.getString( R.string.newversiondetect))
+                                        .positiveText(R.string.ok)
 
 
 
-                try{
-                    String backimage=response.getString("backgroundImage");
-                    final String path = Environment.getExternalStorageDirectory() + File.separator + "backimage.png";
+                                        .show();
 
-                    if (!backimage.equals("")) {
-                        Glide.with(getApplicationContext())
-                                .load(backimage)
-                                .asBitmap()
-                                .into(new SimpleTarget<Bitmap>() {
+                                View positive = dialog.getActionButton(DialogAction.POSITIVE);
+                                positive.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onResourceReady(Bitmap b, GlideAnimation<? super Bitmap> glideAnimation) {
+                                    public void onClick(View v) {
+
+                                        openAppInGooglePlay(getApplicationContext());
+
+
+                                        dialog.dismiss();
+
+                                    }
+                                });
+
+                            }
+
+
+
+
+                        }
+                    }catch (Exception ee)
+                    {
+                        ee.getStackTrace();
+                    }
+
+
+
+                                try{
+                                    String backimage=response.getString("backgroundImage");
+                                    final String path = Environment.getExternalStorageDirectory() + File.separator + "backimage.png";
+
+                                    if (!backimage.equals("")) {
+                                        Glide.with(getApplicationContext())
+                                                .load(backimage)
+                                                .asBitmap()
+                                                .into(new SimpleTarget<Bitmap>() {
+                                                    @Override
+                                                    public void onResourceReady(Bitmap b, GlideAnimation<? super Bitmap> glideAnimation) {
+
+                                                        try {
+
+
+
+
+
+
+
+                                                            new SaveBitmapFile().execute(b);
+
+                                                            imgMovie.setImageBitmap(b);
+
+                                                } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                });
 
                                         try {
 
+                                            SharedPreferences.Editor editor = sharedpreferences.edit();
 
 
+                                            editor.putString("backimage", backimage);
 
 
+                                            editor.commit();
+                                        }catch (Exception ee)
+                                        {
+                                            ee.printStackTrace();
+                                        }
 
+                        }else
 
-                                            new SaveBitmapFile().execute(b);
-
-                                            imgMovie.setImageBitmap(b);
-
-                                } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                });
-
-                        try {
-
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-
-
-                            editor.putString("backimage", backimage);
-
-
-                            editor.commit();
+                        {
+                        File n=new File(path);
+                        if (n.exists())
+                        {
+                        try
+                        {
+                        n.delete();
+                        imgMovie.setImageResource( R.drawable.login_bg);
                         }catch (Exception ee)
                         {
-                            ee.printStackTrace();
+                        ee.printStackTrace();
+                        }
+                        }
                         }
 
-        }else
-
-        {
-        File n=new File(path);
-        if (n.exists())
-        {
-        try
-        {
-        n.delete();
-        imgMovie.setImageResource( R.drawable.login_bg);
-        }catch (Exception ee)
-        {
-        ee.printStackTrace();
-        }
-        }
-        }
 
 
 
-
-        }catch (Exception ee)
-        {
-        ee.printStackTrace();
-        }
+                        }catch (Exception ee)
+                        {
+                        ee.printStackTrace();
+                        }
 
         }
         }, new Response.ErrorListener() {
@@ -1606,6 +1674,23 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         bntBouygue=(ImageView) this.findViewById(R.id.bntbouygue);
         imageback=(ImageView) this.findViewById(R.id.imageback);
 
+        try{
+            String versionName = LoginActivity.this.getPackageManager()
+                    .getPackageInfo(LoginActivity.this.getPackageName(), 0).versionName;
+
+            StaticVar.app_version_code=versionName;
+
+            TextView txtVersion=(TextView)findViewById(R.id.txtVersion);
+            txtVersion.setText("App version : "+versionName);
+
+
+
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+
 
 
         try {
@@ -1966,21 +2051,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
         }
 
 
-        try{
-            String versionName = LoginActivity.this.getPackageManager()
-                    .getPackageInfo(LoginActivity.this.getPackageName(), 0).versionName;
 
-            StaticVar.app_version_code=versionName;
-
-            TextView txtVersion=(TextView)findViewById(R.id.txtVersion);
-            txtVersion.setText("App version : "+versionName);
-
-
-
-        }catch (Exception ee)
-        {
-            ee.printStackTrace();
-        }
 
 
         if (autoLogin.equals("true"))
