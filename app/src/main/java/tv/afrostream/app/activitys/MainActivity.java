@@ -852,9 +852,16 @@ public SharedPreferences sharedpreferences;
                     loading_spinner.setVisibility(View.GONE);
 
                     try {
-                        String errorStr=error.getMessage();
-                        if (errorStr.length()>300)errorStr=errorStr.substring(0,300);
-                        showToast("Error Get User Info" + errorStr );
+                        if(error.networkResponse != null && error.networkResponse.data != null){
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson=error2.getMessage();
+                            JSONObject errorJ=new JSONObject(errorJson);
+                            String MessageError=errorJ.getString("error");
+                            showToast("Error Get User Info : " + MessageError);
+
+                        }
+
+
                     }catch (Exception ee)
                     {
                         ee.printStackTrace();
@@ -1029,9 +1036,16 @@ public SharedPreferences sharedpreferences;
                     loading_spinner.setVisibility(View.GONE);
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
                     try {
-                        String errorStr=error.getMessage();
-                        if (errorStr.length()>300)errorStr=errorStr.substring(0,300);
-                        showToast("Error HomeCatMovie " + errorStr );
+                        if(error.networkResponse != null && error.networkResponse.data != null){
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson=error2.getMessage();
+                            JSONObject errorJ=new JSONObject(errorJson);
+                            String MessageError=errorJ.getString("error");
+                            showToast("Error HomeCatMovie : " + MessageError);
+
+                        }
+
+
                     }catch (Exception ee)
                     {
                         ee.printStackTrace();

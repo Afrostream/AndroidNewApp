@@ -6,6 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -58,7 +60,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +89,7 @@ public class PaymentActivity extends FragmentActivity implements GoogleApiClient
     CheckBox chkPay;
     TextView bntPayCondition;
     TextView bntCgu;
-
+    SharedPreferences sharedpreferences;
 
     private final int CREATE_NEW_CARD = 0;
     private Toast toast;
@@ -96,8 +100,8 @@ int ListPosition=0;
     Button bntValider;
     Button bnt_google_pay;
 
-    String user_last_name;
-    String user_first_name;
+    String user_last_name="";
+    String user_first_name="";
     private IntentIntegrator qrScan;
 
     public FirebaseAnalytics mFirebaseAnalytics;
@@ -252,8 +256,9 @@ int ListPosition=0;
         }
 
 
+
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/internalplans"+StaticVar.ApiUrlParams;  //"?filterCountry="+StaticVar.CountryCode+"&filterEnabled=true"+"&filterClientId=" +StaticVar.clientApiID;
+        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/internalplans"+StaticVar.ApiUrlParams +"&clientVersion="+StaticVar.app_version_code;  //"?filterCountry="+StaticVar.CountryCode+"&filterEnabled=true"+"&filterClientId=" +StaticVar.clientApiID;
 
         //urlJsonObj=urlJsonObj.replace("https://afrostream-backend.herokuapp.com","https://api.afrostream.tv");
 
@@ -327,11 +332,75 @@ int ListPosition=0;
 
 
 
+public void GoogleGetNameDialog(final String purchaseToken, final String orderId,final String  InternalPlanUuid)
+{
+    final MaterialDialog dialogName=new MaterialDialog.Builder(PaymentActivity.this)
+            .title(R.string.Infopayment)
+
+            .customView(R.layout.dialog_coupon_name, false)
+
+            .positiveText(R.string.activity_login_forget_validate)
+            .negativeText(R.string.cancel)
+            .titleColor(Color.BLACK)
+            .contentColor(Color.BLACK) // notice no 'res' postfix for literal color
+            .linkColorAttr(R.attr.colorPrimary)  // notice attr is used instead of none or res for attribute resolving
+            .dividerColorRes(R.color.colorPrimary)
+            //.backgroundColorRes(R.color.colorPrimary)
+            .positiveColorRes(R.color.colorPrimary)
+            .widgetColorRes(R.color.colorPrimary)
+            .buttonRippleColorRes(R.color.colorPrimary)
+            .show();
+
+
+    View positive = dialogName.getActionButton(DialogAction.POSITIVE);
+
+    final View dialogView = dialogName.getView();
+
+
+    positive.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
 
 
 
-    private void makeCoupon(final String access_token, final String couponCode) {
+            EditText txtFirstname =(EditText)dialogView.findViewById(R.id.txtFirstname);
+            EditText txtLastname =(EditText)dialogView.findViewById(R.id.txtLastname);
+
+
+
+            if (!txtFirstname.getText().toString().equals("") && !txtLastname.getText().toString().equals("") )
+            {
+
+                PaymentActivity.this.user_first_name=txtFirstname.getText().toString();
+                PaymentActivity.this.user_last_name=txtLastname.getText().toString();
+
+                makeSubcription(StaticVar.access_token, purchaseToken,  txtFirstname.getText().toString() , txtLastname.getText().toString(), "google", orderId,"","","",InternalPlanUuid);
+                dialogName.dismiss();
+            }else
+            {
+                showToast(getString(R.string.checkFirstnameLastname));
+            }
+
+            //  showToast(txt.getText().toString());
+
+
+        }
+    });
+
+    View negative = dialogName.getActionButton(DialogAction.NEGATIVE);
+    negative.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            dialogName.dismiss();
+
+        }
+    });
+}
+
+
+    private void makeCoupon(final String access_token, final String couponCode,final String UUIDPlan) {
 
 
         if (access_token.equals("") )
@@ -343,7 +412,7 @@ int ListPosition=0;
 
 
         loading_spinner.setVisibility(View.VISIBLE);
-        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/coupons"+"?coupon="+couponCode+StaticVar.ApiUrlParams;
+        String urlJsonObj= StaticVar.BaseUrl+"/api/billings/coupons"+StaticVar.ApiUrlParams+"&coupon="+couponCode;
 
 
 
@@ -377,7 +446,7 @@ int ListPosition=0;
 
 
                                     final MaterialDialog dialogName=new MaterialDialog.Builder(PaymentActivity.this)
-                                            .title(R.string.couponInfo)
+                                            .title(R.string.Infopayment)
 
                                             .customView(R.layout.dialog_coupon_name, false)
 
@@ -414,7 +483,7 @@ int ListPosition=0;
                                             if (!txtFirstname.getText().toString().equals("") && !txtLastname.getText().toString().equals("") )
                                             {
 
-                                                makeSubcription(StaticVar.access_token,"",txtFirstname.getText().toString(),txtLastname.getText().toString(),providerName,"",couponCode,couponsCampaignType,internalPlanUuid);
+                                                makeSubcription(StaticVar.access_token,"",txtFirstname.getText().toString(),txtLastname.getText().toString(),providerName,"",couponCode,couponsCampaignType,internalPlanUuid,UUIDPlan);
                                             }else
                                             {
                                                 showToast(getString(R.string.checkFirstnameLastname));
@@ -510,7 +579,7 @@ int ListPosition=0;
 
 
 
-    private void makeSubcription(final String access_token, String stripeToken, String Firstname,String Lastname,String billingProviderName,String orderIdGoogle,String couponCode,String couponsCampaignTypeValue,String CouponInternalPlanUuid) {
+    private void makeSubcription(final String access_token, String stripeToken, String Firstname,String Lastname,String billingProviderName,String orderIdGoogle,String couponCode,String couponsCampaignTypeValue,String CouponInternalPlanUuid,String InternalPlanUuid) {
 
 
         if (access_token.equals("") )
@@ -534,7 +603,7 @@ try {
     params.put("firstName", Firstname);
     params.put("lastName", Lastname);
     if (CouponInternalPlanUuid.equals(""))
-    params.put("internalPlanUuid", selectPlan.getInternalPlanUuid());
+    params.put("internalPlanUuid",  InternalPlanUuid );
     else
         params.put("internalPlanUuid", CouponInternalPlanUuid);
 
@@ -615,8 +684,26 @@ try {
                             ee.printStackTrace();
                         }
 
+                        if (sharedpreferences!=null) {
 
-                        showToast("Merci pour votre paiement,vous pouvez vous connecter maintenant");
+                            synchronized (this) {
+
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+                                editor.putString("purchaseToken", "");
+                                editor.putString("orderId", "");
+                                editor.putString("InternalPlanUuid", "");
+
+
+
+
+                                editor.commit();
+                            }
+                        }
+
+
+                        showToast(getString(R.string.merci_paiement));
                         StaticVar.subscription=true;
                         StaticVar.FirstLaunch=true;
 
@@ -646,9 +733,15 @@ try {
                     if(error.networkResponse != null && error.networkResponse.data != null){
                         VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
                         String errorJson=error2.getMessage();
-                        JSONObject errorJ=new JSONObject(errorJson);
-                        String MessageError=errorJ.getString("error");
-                        showToast("Error: " + MessageError);
+                        try {
+                            JSONObject errorJ = new JSONObject(errorJson);
+                            String MessageError = errorJ.getString("error");
+                            showToast(getString(R.string.error_subscribe) + MessageError);
+                        }catch (Exception e)
+                        {
+                            showToast(getString(R.string.error_subscribe) + errorJson);
+
+                        }
 
                     }
                 }catch (Exception ee)
@@ -693,7 +786,7 @@ try {
         setContentView(R.layout.activity_payment);
 
 
-
+        sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
         try {
             this.user_first_name = getIntent().getStringExtra("user_first_name");
             this.user_last_name = getIntent().getStringExtra("user_last_name");
@@ -756,6 +849,61 @@ try {
 
         makeGetListPlans(StaticVar.access_token,lst);
 
+
+        try {
+
+            synchronized (this) {
+                sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
+
+                String purchaseToken=sharedpreferences.getString("purchaseToken", "");
+                String orderId=sharedpreferences.getString("orderId", "");
+                String InternalPlanUuid=sharedpreferences.getString("InternalPlanUuid", "");
+
+
+                if (!purchaseToken.equals("") )
+                {
+
+
+
+                    if (PaymentActivity.this.user_first_name.equals("") ||PaymentActivity.this.user_first_name.equals("null") ||PaymentActivity.this.user_first_name==null|| PaymentActivity.this.user_last_name.equals("")|| PaymentActivity.this.user_last_name.equals("null")|| PaymentActivity.this.user_last_name==null)
+                    {
+                        GoogleGetNameDialog(purchaseToken,orderId,InternalPlanUuid);
+                        return;
+                    }
+
+                    dialog=new MaterialDialog.Builder(PaymentActivity.this)
+                            .title(R.string.trysubscribe)
+                            .content(PaymentActivity.this.getString( R.string.payment_detect))
+                            .positiveText(R.string.ok)
+
+
+
+                            .show();
+
+                    View positive = dialog.getActionButton(DialogAction.POSITIVE);
+                    positive.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            dialog.dismiss();
+
+                        }
+                    });
+
+                    makeSubcription(StaticVar.access_token, purchaseToken,  PaymentActivity.this.user_first_name , PaymentActivity.this.user_last_name, "google", orderId,"","","",InternalPlanUuid);
+                }
+
+
+
+
+            }
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+
         bntValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -775,77 +923,24 @@ try {
                 selectPlan=lstPlans.get(ListPosition);
 
 
-                if (selectPlan.getInternalPlanUuid().equals("coupon")) {
 
-                      dialog=new MaterialDialog.Builder(PaymentActivity.this)
-                            .title(R.string.coupon)
-                            .positiveText(R.string.activity_login_forget_validate)
-                            .negativeText(R.string.cancel)
-                            .neutralText(R.string.scanqrcode)
-
-                            // .inputRangeRes(2, 20, R.color.re)
-                            .input(null, null, new MaterialDialog.InputCallback() {
-                                @Override
-                                public void onInput(MaterialDialog dialog, CharSequence input) {
-                                    // Do something
-                                }
-                            }).show();
-
-                    View positive = dialog.getActionButton(DialogAction.POSITIVE);
-                    positive.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            String Coupon=  dialog.getInputEditText().getText().toString();
-
-
-
-
-                            makeCoupon(StaticVar.access_token,Coupon);
-
-                        }
-                    });
-
-                    View neutral = dialog.getActionButton(DialogAction.NEUTRAL);
-                    neutral.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                           /* BarcodeDetector detector =
-                                    new BarcodeDetector.Builder(getApplicationContext())
-                                            .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
-                                            .build();
-                            if(!detector.isOperational()){
-                                showToast("Could not set up the detector!");
-                                return;
-                            }*/
-
-
-
-                            qrScan = new IntentIntegrator(PaymentActivity.this);
-
-                            qrScan.initiateScan();
-
-
-                        }
-                    });
-
-                    View negative = dialog.getActionButton(DialogAction.NEGATIVE);
-                    negative.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            dialog.dismiss();
-
-                        }
-                    });
-
-
-
-                    return;
-                }
 
                 if (selectPlan!=null) {
+
+                    if (sharedpreferences!=null) {
+
+                        synchronized (this) {
+
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+                            editor.putString("InternalPlanUuid", selectPlan.getInternalPlanUuid());
+
+
+                            editor.commit();
+                        }
+                    }
+
 
                     try {
 
@@ -865,12 +960,135 @@ try {
                         ee.printStackTrace();
                     }
 
-                    if (selectPlan.getProviderName().equals("stripe")) {
+
+                    if (selectPlan.getInternalPlanUuid().equals("coupon")) {
+
+                        dialog=new MaterialDialog.Builder(PaymentActivity.this)
+                                .title(R.string.coupon)
+                                .positiveText(R.string.activity_login_forget_validate)
+                                .negativeText(R.string.cancel)
+                                .neutralText(R.string.scanqrcode)
+
+                                // .inputRangeRes(2, 20, R.color.re)
+                                .input(null, null, new MaterialDialog.InputCallback() {
+                                    @Override
+                                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                                        // Do something
+                                    }
+                                }).show();
+
+                        View positive = dialog.getActionButton(DialogAction.POSITIVE);
+                        positive.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                String Coupon=  dialog.getInputEditText().getText().toString();
+
+
+
+
+                                makeCoupon(StaticVar.access_token,Coupon,selectPlan.getProviderPlanUuid());
+
+                            }
+                        });
+
+                        View neutral = dialog.getActionButton(DialogAction.NEUTRAL);
+                        neutral.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                           /* BarcodeDetector detector =
+                                    new BarcodeDetector.Builder(getApplicationContext())
+                                            .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
+                                            .build();
+                            if(!detector.isOperational()){
+                                showToast("Could not set up the detector!");
+                                return;
+                            }*/
+
+
+
+                                qrScan = new IntentIntegrator(PaymentActivity.this);
+
+                                qrScan.initiateScan();
+
+
+                            }
+                        });
+
+                        View negative = dialog.getActionButton(DialogAction.NEGATIVE);
+                        negative.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                dialog.dismiss();
+
+                            }
+                        });
+
+
+
+                        return;
+                    }else  if (selectPlan.getProviderName().equals("stripe")) {
                         Intent intent = new Intent(PaymentActivity.this, CardEditActivity.class);
                         intent.putExtra(CreditCardUtils.EXTRA_CARD_HOLDER_NAME, "");
 
                         startActivityForResult(intent, CREATE_NEW_CARD);
                     }else  if (selectPlan.getProviderName().equals("google")) {
+
+
+                        try {
+
+                            synchronized (this) {
+                                sharedpreferences = getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
+
+                                String purchaseToken=sharedpreferences.getString("purchaseToken", "");
+                                String orderId=sharedpreferences.getString("orderId", "");
+                                String InternalPlanUuid=sharedpreferences.getString("InternalPlanUuid", "");
+
+                                if (!purchaseToken.equals("") )
+                                {
+
+                                    if (PaymentActivity.this.user_first_name.equals("") || PaymentActivity.this.user_last_name.equals(""))
+                                    {
+                                        GoogleGetNameDialog(purchaseToken,orderId,InternalPlanUuid);
+                                        return;
+                                    }
+
+                                    dialog=new MaterialDialog.Builder(PaymentActivity.this)
+                                            .title(R.string.trysubscribe)
+                                            .content(PaymentActivity.this.getString( R.string.payment_detect))
+                                            .positiveText(R.string.ok)
+
+
+
+                                            .show();
+
+                                    View positive = dialog.getActionButton(DialogAction.POSITIVE);
+                                    positive.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+
+                                            dialog.dismiss();
+
+                                        }
+                                    });
+
+
+                                    makeSubcription(StaticVar.access_token, purchaseToken,  PaymentActivity.this.user_first_name , PaymentActivity.this.user_last_name, "google", orderId,"","","",InternalPlanUuid);
+
+                                return;
+                                }
+
+
+
+
+                            }
+                        }catch (Exception ee)
+                        {
+                            ee.printStackTrace();
+                        }
 
 
                         String sku=selectPlan.getProviderPlanUuid();
@@ -898,7 +1116,7 @@ try {
                     }
                 }else
                 {
-                    showToast("Veuillez séléctionné un plan");
+                    showToast(getString(R.string.select_plan));
                 }
             }
         });
@@ -956,7 +1174,7 @@ try {
                    // showToast(Content);
                     dialog.dismiss();
 
-                    makeCoupon(StaticVar.access_token,Content);
+                    makeCoupon(StaticVar.access_token,Content,selectPlan.getProviderPlanUuid());
                     return;
 
                 } catch (Exception e) {
@@ -1005,12 +1223,36 @@ try {
                         JSONObject jo = new JSONObject(purchaseData);
                         String sku = jo.getString("productId");
 
-                        makeSubcription(StaticVar.access_token, purchaseToken,  this.user_first_name , this.user_last_name, "google", orderId,"","","");
+
+                        if (sharedpreferences!=null) {
+
+                            synchronized (this) {
+
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+                                editor.putString("purchaseToken", purchaseToken);
+                                editor.putString("orderId", orderId);
+                                editor.putString("InternalPlanUuid", selectPlan.getInternalPlanUuid());
+
+
+                                editor.commit();
+                            }
+                        }
+
+                        if (PaymentActivity.this.user_first_name.equals("") || PaymentActivity.this.user_last_name.equals(""))
+                        {
+                            GoogleGetNameDialog(purchaseToken,orderId,selectPlan.getInternalPlanUuid());
+                            return;
+                        }
+
+
+                        makeSubcription(StaticVar.access_token, purchaseToken,  this.user_first_name , this.user_last_name, "google", orderId,"","","",selectPlan.getInternalPlanUuid());
 
                        // showToast("You have bought the " + sku + ". Excellent");
                         return;
                     } catch (JSONException e) {
-                        showToast("Failed to parse purchase data.");
+                        showToast(getString(R.string.error_purchase_data));
                         e.printStackTrace();
                     }
                 }
@@ -1085,7 +1327,7 @@ try {
                         new TokenCallback() {
                             public void onSuccess(Token token) {
                                 // Send token to your server
-                                makeSubcription(StaticVar.access_token,token.getId(),name,name,"stripe","","","","");
+                                makeSubcription(StaticVar.access_token,token.getId(),name,name,"stripe","","","","",selectPlan.getInternalPlanUuid());
                             }
                             public void onError(Exception error) {
                                 // Show localized error message

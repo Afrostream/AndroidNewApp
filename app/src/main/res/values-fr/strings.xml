@@ -166,7 +166,7 @@
     <string name="scanqrcode">Scan code</string>
     <string name="invalidcoupon">Coupon non valide</string>
     <string name="checkFirstnameLastname">Veuillez bien saisir votre nom et prénom</string>
-    <string name="couponInfo">Informations</string>
+    <string name="Infopayment">Informations de paiement</string>
     <string name="MentionsLegal">Mentions légales</string>
     <string name="CGU">CGU</string>
     <string name="contact">Contact</string>
@@ -190,4 +190,14 @@
     <string name="cancel_title_subscription">Annuler l\'abonnement</string>
     <string name="cancel_question_subscription">Êtes-vous sûr de vouloir annuler votre abonnement ? le service sera actif jusqu\'à la date du : </string>
     <string name="subsription_cancelled">Votre abonnement a été annulé, vous aurez accès au service jusqu\'à la date du : </string>
+    <string name="en_savoir_plus">(En savoir plus)</string>
+    <string name="nom_du_plan">Nom du plan :</string>
+    <string name="prix_abonnement">Prix de l\'abonnement :</string>
+    <string name="merci_paiement">Merci pour votre paiement,vous pouvez vous connecter maintenant</string>
+    <string name="select_plan">Veuillez sélectionner un plan</string>
+    <string name="error_purchase_data">Impossible d\'analyser les données d\'achat.</string>
+    <string name="trysubscribe">Paiement</string>
+    <string name="ok">OK</string>
+    <string name="payment_detect">Nous vous confirmons que votre paiement a bien été pris en compte. Malheureusement une erreur est survenue lors de la création de votre abonnement, nous essayons actuellement d\’en identifier la source. Pour toute question veuillez écrire à support@afrostream.tv</string>
+    <string name="error_subscribe">Error Inscription:</string>
 </resources>

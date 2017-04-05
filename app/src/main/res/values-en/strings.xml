@@ -167,7 +167,7 @@
     <string name="scanqrcode">Scan code</string>
     <string name="invalidcoupon">Not valid code</string>
     <string name="checkFirstnameLastname">Please enter your first and last name</string>
-    <string name="couponInfo">Informations</string>
+    <string name="Infopayment">Payment informations</string>
     <string name="MentionsLegal">Legals</string>
     <string name="CGU">CGU</string>
     <string name="contact">Contact</string>
@@ -191,4 +191,14 @@
     <string name="cancel_title_subscription">Cancel subscription</string>
     <string name="cancel_question_subscription">Are you sure you want to cancel your subscription? The service will be active until the date of:</string>
     <string name="subsription_cancelled">Your subscription has been canceled, you will have access to the service until the date of: </string>
+    <string name="en_savoir_plus">(Know more)</string>
+    <string name="nom_du_plan">Subscription name :</string>
+    <string name="prix_abonnement">Subscription price :</string>
+    <string name="merci_paiement">Thanks for your payment, you can log in now</string>
+    <string name="select_plan">Please select a plan</string>
+    <string name="error_purchase_data">Failed to parse purchase data.</string>
+    <string name="trysubscribe">Payment</string>
+    <string name="ok">ok</string>
+    <string name="payment_detect">We confirm that your payment has been taken into account. Unfortunately an error occurred while creating your subscription, we are currently trying to identify the source. If you have any questions please contact support@afrostream.tv</string>
+    <string name="error_subscribe">Error Subscription:</string>
 </resources>

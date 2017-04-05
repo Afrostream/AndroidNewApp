@@ -153,9 +153,9 @@ CallbackManager callbackManager;
                   FileOutputStream out = null;
                                             try {
 
-                                                final String path = Environment.getExternalStorageDirectory() + File.separator + "backimage.png";
+                                                //final String path = context.getFilesDir(), + File.separator + "backimage.png";
 
-                                                out = new FileOutputStream(path);
+                                                out =  LoginActivity.this.openFileOutput("backimage.png",Context.MODE_PRIVATE);
                                                 b.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
                                                 // PNG is a lossless format, the compression factor (100) is ignored
                                             } catch (Exception e) {
@@ -1629,8 +1629,9 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
         try{
             synchronized (this) {
-                String path = Environment.getExternalStorageDirectory() + File.separator + "backimage.png";
-                File backimage = new File(path);
+               // String path = Environment.getExternalStorageDirectory() + File.separator + "backimage.png";
+                String path ="backimage.png";
+                File backimage = new File(LoginActivity.this.getFilesDir(),path);
 
                 if (backimage.exists()) {
                     /*Bitmap bitmap = BitmapFactory.decodeFile(path);
@@ -1828,7 +1829,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                 String Password=txtPassword.getText().toString();
 
 
-                try {
+                /*try {
                     int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                     if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                         // Do something for lollipop and above versions
@@ -1841,7 +1842,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                 }catch (Exception ee)
                 {
                     ee.printStackTrace();
-                }
+                }*/
 
                 makeAuthGeo( Username, Password);
 
@@ -1969,6 +1970,8 @@ final String saveIfSkip = "skipProtectedAppsMessage";
             String versionName = LoginActivity.this.getPackageManager()
                     .getPackageInfo(LoginActivity.this.getPackageName(), 0).versionName;
 
+            StaticVar.app_version_code=versionName;
+
             TextView txtVersion=(TextView)findViewById(R.id.txtVersion);
             txtVersion.setText("App version : "+versionName);
 
@@ -1990,7 +1993,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
 
 
-        Handler handler = new Handler(Looper.getMainLooper());
+      /*  Handler handler = new Handler(Looper.getMainLooper());
 
         handler.postDelayed(new Runnable() {
 
@@ -2034,7 +2037,7 @@ final String saveIfSkip = "skipProtectedAppsMessage";
 
 
             }
-        }, 1000 );
+        }, 1000 );*/
 
 
 

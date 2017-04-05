@@ -92,6 +92,9 @@ public class StaticVar {
     public static String  Subscription_isCancelable="";
     public static String Subscription_subStatus="";
 
+    public static String app_version_code="";
+
+
 
 
 

@@ -27,12 +27,16 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+
+        android:layout_below="@+id/logo"
+        android:layout_above="@+id/linearLayout"
 
         android:padding="10dp"
         android:orientation="vertical"
-        android:layout_below="@+id/logo"
+
      >
 
         <TextView
@@ -48,9 +52,11 @@
             android:background="?android:attr/activatedBackgroundIndicator"
             android:layout_marginTop="20dp"
             android:choiceMode="singleChoice"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
 
             android:id="@+id/listplans"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
 
             android:layout_height="wrap_content"></ListView>
 
@@ -58,19 +64,21 @@
 
 
 
-    </LinearLayout>
+    </LinearLayout >
 
 
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:paddingLeft="10dp"
+
         android:layout_marginBottom="70dp"
         android:layout_height="wrap_content" android:orientation="vertical"
         android:id="@+id/linearLayout">
         <CheckBox
             android:id="@+id/chkCGU"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:textColor="#ffffff"
             android:layout_height="wrap_content" android:text="@string/acceptCgu" />
         <TextView
@@ -78,23 +86,26 @@
             android:layout_marginTop="2dp"
             android:id="@+id/bntCGU"
             android:layout_marginRight="20dp"
+
             android:layout_width="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_height="wrap_content" android:text="(En savoir plus)"/>
+            android:layout_height="wrap_content" android:text="@string/en_savoir_plus"/>
         <CheckBox
             android:layout_marginTop="7dp"
             android:id="@+id/chkPay"
+
             android:layout_width="wrap_content"
             android:textColor="#ffffff"
             android:layout_height="wrap_content" android:text="@string/payCondition" />
         <TextView
             android:layout_marginRight="20dp"
+
             android:layout_gravity="right"
             android:id="@+id/bntPayCondition"
             android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_height="wrap_content" android:text="(En savoir plus)"/>
+            android:layout_height="wrap_content" android:text="@string/en_savoir_plus"/>
 
     </LinearLayout>
 

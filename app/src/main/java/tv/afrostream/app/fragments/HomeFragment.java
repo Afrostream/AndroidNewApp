@@ -306,7 +306,7 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                             OnReponseGetCategorieMovieHome(response,catMoviesRecyclerView);
 
 
-                            try {
+                           /* try {
                                 int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                                 if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                                     // Do something for lollipop and above versions
@@ -318,7 +318,7 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
                             }catch (Exception ee)
                             {
                                 ee.printStackTrace();
-                            }
+                            }*/
 
                         }
                     }, new Response.ErrorListener() {
