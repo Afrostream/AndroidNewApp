@@ -181,7 +181,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 try {
 
-                    final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                   /* final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                             Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -195,7 +195,11 @@ public class SplashActivity extends AppCompatActivity {
 
                    startActivity (intent);
 
-                    SplashActivity.this.overridePendingTransition(0, 0);
+                    SplashActivity.this.overridePendingTransition(0, 0);*/
+
+                    final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    ActivityCompat.startActivity(SplashActivity.this, intent, null);
+
 
                 }catch (Exception e)
                 {

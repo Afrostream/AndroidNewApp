@@ -178,7 +178,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
                 try {
 
-                    Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                    Intent intent = new Intent(context, MovieDetailsActivity.class);
 
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation((MainActivity) view.getContext(), view, "movieimage");

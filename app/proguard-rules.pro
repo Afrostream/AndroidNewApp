@@ -30,6 +30,7 @@
 -dontwarn org.joda.time.**
 -dontwarn org.w3c.dom.**
 
+-keep public class android.app.ActivityTransitionCoordinator
 
 -keep class org.apache.http.** { *; }
 -keepclassmembers class org.apache.http.** {*;}
