@@ -257,6 +257,8 @@ public class SearchActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        StaticVar.searchAct=this;
+
         loading_spinner=(ProgressBar) this.findViewById(R.id.loading_spinner);
         Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);

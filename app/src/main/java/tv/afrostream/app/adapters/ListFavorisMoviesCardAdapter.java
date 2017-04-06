@@ -88,7 +88,7 @@ public class ListFavorisMoviesCardAdapter extends RecyclerView.Adapter {
                     ee.printStackTrace();
                 }
 
-                Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                Intent intent = new Intent(StaticVar.mainAct.getApplicationContext(), MovieDetailsActivity.class);
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((MainActivity)view.getContext(), view, "movieimage");

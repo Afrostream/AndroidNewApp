@@ -203,6 +203,7 @@
     <string name="error_subscribe">Error inscription:</string>
     <string name="update">Mise a jour</string>
     <string name="newversiondetect">Nouvelle version détectée, veuillez mettre à jour votre application via le play store google</string>
+    <string name="errorcoupon">Veuillez entrer un coupon valide</string>
 
 
 </resources>

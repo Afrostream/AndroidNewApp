@@ -167,16 +167,21 @@ public Boolean ifExistFav(ArrayList<MovieItemModel> favlist,MovieItemModel movie
                     ee.printStackTrace();
                 }
 
-                Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                try{
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((MainActivity)view.getContext(), view, "movieimage");
+                Intent intent = new Intent(StaticVar.mainAct.getApplicationContext(), MovieDetailsActivity.class);
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(StaticVar.mainAct, view, "movieimage");
 
                 intent.putExtra ("movieInfo",item.movie_all_Info.toString());
                 intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
                 intent.putExtra ("label",item.categorie.toString());
 
                 ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+                }catch (Exception ee)
+                {
+                    ee.printStackTrace();
+                }
 
 
 

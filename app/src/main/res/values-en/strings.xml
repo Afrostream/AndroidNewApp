@@ -203,4 +203,5 @@
     <string name="error_subscribe">Error Subscription:</string>
     <string name="update">App Update</string>
     <string name="newversiondetect">New version detected, please update your application via google play store</string>
+    <string name="errorcoupon">Please enter a valid coupon</string>
 </resources>

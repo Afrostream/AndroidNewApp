@@ -4,6 +4,7 @@ import tv.afrostream.app.activitys.MainActivity;
 import tv.afrostream.app.activitys.MainActivityLocal;
 import tv.afrostream.app.activitys.MovieDetailsActivity;
 import tv.afrostream.app.activitys.MyDownloadActivity;
+import tv.afrostream.app.activitys.SearchActivity;
 import tv.afrostream.app.activitys.SerieDownloadDetailActivity;
 import tv.afrostream.app.fragments.CategoriesFragement;
 import tv.afrostream.app.fragments.ListFavorisFragment;
@@ -66,6 +67,7 @@ public class StaticVar {
     public static MyDownloadActivity downloadAct;
 
     public static MainActivity mainAct;
+    public static SearchActivity searchAct;
     public static MainActivityLocal mainActLocal;
     public static MovieDetailsActivity MovieDetailsAct;
 

@@ -91,17 +91,22 @@ public class HomeCatMoviesItemAdapter extends RecyclerView.Adapter {
                 }
 
 
-                Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                try {
+                    Intent intent = new Intent(StaticVar.mainAct.getApplicationContext(), MovieDetailsActivity.class);
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((MainActivity)view.getContext(), view, "movieimage");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation(StaticVar.mainAct, view, "movieimage");
 
-                intent.putExtra ("movieInfo",item.movie_all_Info.toString());
-                intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
+                    intent.putExtra("movieInfo", item.movie_all_Info.toString());
+                    intent.putExtra("coverImageUrl", item.coverImageUrl.toString());
 
-                intent.putExtra ("label",item.categorie);
+                    intent.putExtra("label", item.categorie);
 
-                ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+                    ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+                }catch (Exception ee)
+                {
+                    ee.getStackTrace();
+                }
 
 
 

@@ -376,7 +376,7 @@ public void GoogleGetNameDialog(final String purchaseToken, final String orderId
                 PaymentActivity.this.user_last_name=txtLastname.getText().toString();
 
                 makeSubcription(StaticVar.access_token, purchaseToken,  txtFirstname.getText().toString() , txtLastname.getText().toString(), "google", orderId,"","","",InternalPlanUuid);
-                dialogName.dismiss();
+               if (dialogName!=null) dialogName.dismiss();
             }else
             {
                 showToast(getString(R.string.checkFirstnameLastname));
@@ -393,7 +393,7 @@ public void GoogleGetNameDialog(final String purchaseToken, final String orderId
         @Override
         public void onClick(View v) {
 
-            dialogName.dismiss();
+            if (dialogName!=null)dialogName.dismiss();
 
         }
     });
@@ -409,6 +409,17 @@ public void GoogleGetNameDialog(final String purchaseToken, final String orderId
             showToast(this.getString(R.string.activity_login_error_login_empty) );
             return;
         }
+
+
+        if (couponCode.trim().equals("") )
+        {
+
+            showToast(getString(R.string.errorcoupon) );
+            return;
+        }
+
+
+
 
 
         loading_spinner.setVisibility(View.VISIBLE);
@@ -1154,194 +1165,190 @@ try {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-
-
-            //if qrcode has nothing in it
-            if (result.getContents() == null) {
-                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
-            } else {
-                //if qr contains data
-                try {
-                    //converting the data to json
-                    //JSONObject obj = new JSONObject(result.getContents());
-                    //setting values to textviews
-
-
-                    String Content=result.getContents();
-                   // showToast(Content);
-                    dialog.dismiss();
-
-                    makeCoupon(StaticVar.access_token,Content,selectPlan.getProviderPlanUuid());
-                    return;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    //if control comes here
-                    //that means the encoded format not matches
-                    //in this case you can display whatever data is available on the qrcode
-                    //to a toast
-                   // Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-        }
+        try {
 
 
 
+            if (resultCode != RESULT_CANCELED ) {
+
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null) {
 
 
+                    //if qrcode has nothing in it
+                    if (result.getContents() == null) {
+                        Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+                    } else {
+                        //if qr contains data
+                        try {
+                            //converting the data to json
+                            //JSONObject obj = new JSONObject(result.getContents());
+                            //setting values to textviews
 
 
+                            String Content = result.getContents();
+                            // showToast(Content);
+                            dialog.dismiss();
 
-        if (requestCode == 1001) {
-            try {
-                int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
-                String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+                            makeCoupon(StaticVar.access_token, Content, selectPlan.getProviderPlanUuid());
+                            return;
 
-                String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
-                String purchaseToken = "";
-                String orderId = "";
-                String productId = "";
-                String developerPayload = "";
-
-
-                try {
-                    JSONObject dataJ = new JSONObject(purchaseData);
-                    purchaseToken = dataJ.getString("purchaseToken");
-                    orderId = dataJ.getString("orderId");
-                    productId = dataJ.getString("productId");
-                    developerPayload = dataJ.getString("developerPayload");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                if (resultCode == RESULT_OK) {
-                    try {
-                        JSONObject jo = new JSONObject(purchaseData);
-                        String sku = jo.getString("productId");
-
-
-                        if (sharedpreferences!=null) {
-
-                            synchronized (this) {
-
-                                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-
-                                editor.putString("purchaseToken", purchaseToken);
-                                editor.putString("orderId", orderId);
-                                editor.putString("InternalPlanUuid", selectPlan.getInternalPlanUuid());
-
-
-                                editor.commit();
-                            }
-                        }
-
-                        if (PaymentActivity.this.user_first_name.equals("") || PaymentActivity.this.user_last_name.equals(""))
-                        {
-                            GoogleGetNameDialog(purchaseToken,orderId,selectPlan.getInternalPlanUuid());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            //if control comes here
+                            //that means the encoded format not matches
+                            //in this case you can display whatever data is available on the qrcode
+                            //to a toast
+                            // Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                             return;
                         }
-
-
-                        makeSubcription(StaticVar.access_token, purchaseToken,  this.user_first_name , this.user_last_name, "google", orderId,"","","",selectPlan.getInternalPlanUuid());
-
-                       // showToast("You have bought the " + sku + ". Excellent");
-                        return;
-                    } catch (JSONException e) {
-                        showToast(getString(R.string.error_purchase_data));
-                        e.printStackTrace();
                     }
                 }
 
-                return;
-            }catch (Exception ee)
-            {
-                ee.printStackTrace();
-                return;
-            }
-        }
+
+                if (requestCode == 1001) {
+                    try {
+                        int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+                        String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+
+                        String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+                        String purchaseToken = "";
+                        String orderId = "";
+                        String productId = "";
+                        String developerPayload = "";
 
 
+                        try {
+                            JSONObject dataJ = new JSONObject(purchaseData);
+                            purchaseToken = dataJ.getString("purchaseToken");
+                            orderId = dataJ.getString("orderId");
+                            productId = dataJ.getString("productId");
+                            developerPayload = dataJ.getString("developerPayload");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-        if (resultCode == RESULT_OK) {
-//            Debug.printToast("Result Code is OK", getApplicationContext());
-
-            final String name = data.getStringExtra(CreditCardUtils.EXTRA_CARD_HOLDER_NAME);
-            String cardNumber = data.getStringExtra(CreditCardUtils.EXTRA_CARD_NUMBER);
-            String expiry = data.getStringExtra(CreditCardUtils.EXTRA_CARD_EXPIRY);
-            String cardCVC = data.getStringExtra(CreditCardUtils.EXTRA_CARD_CVV);
-
-            if (name.equals("") || name.equals(""))
-            {
-                showToast(getString(R.string.cardholdererror));
-                return;
-            }
-            if (cardNumber.equals("") || cardNumber.equals(""))
-            {
-                showToast(getString(R.string.cardnumbererror));
-                return;
-            }
-            if (expiry.equals("") || expiry.equals(""))
-            {
-                showToast(getString(R.string.expirycarderror));
-                return;
-            }
-            if (cardCVC.equals("") || cardCVC.equals(""))
-            {
-                showToast(getString(R.string.CVCCardError));
-                return;
-            }
-
-            String nb[] =expiry.split("/");
-            int cardExpMonth= Integer.parseInt(nb[0]) ;
-            int cardExpYear= Integer.parseInt(nb[1]);
-
-            if (requestCode == CREATE_NEW_CARD) {
-
-                Card card = new Card(
-                        cardNumber,
-                        cardExpMonth,
-                        cardExpYear,
-                        cardCVC
-                );
-
-                card.validateNumber();
-                card.validateCVC();
+                        if (resultCode == RESULT_OK) {
+                            try {
+                                JSONObject jo = new JSONObject(purchaseData);
+                                String sku = jo.getString("productId");
 
 
-                Stripe stripe = null;
-                try {
-                    stripe = new Stripe(StaticVar.StripeKey);
-                } catch (AuthenticationException e) {
-                    e.printStackTrace();
-                }
+                                if (sharedpreferences != null) {
 
-                if (stripe!=null)
-                {
-                stripe.createToken(
-                        card,
-                        new TokenCallback() {
-                            public void onSuccess(Token token) {
-                                // Send token to your server
-                                makeSubcription(StaticVar.access_token,token.getId(),name,name,"stripe","","","","",selectPlan.getInternalPlanUuid());
-                            }
-                            public void onError(Exception error) {
-                                // Show localized error message
-                                showToast(error.toString());
+                                    synchronized (this) {
+
+                                        SharedPreferences.Editor editor = sharedpreferences.edit();
 
 
+                                        editor.putString("purchaseToken", purchaseToken);
+                                        editor.putString("orderId", orderId);
+                                        editor.putString("InternalPlanUuid", selectPlan.getInternalPlanUuid());
+
+
+                                        editor.commit();
+                                    }
+                                }
+
+                                if (PaymentActivity.this.user_first_name.equals("") || PaymentActivity.this.user_last_name.equals("")) {
+                                    GoogleGetNameDialog(purchaseToken, orderId, selectPlan.getInternalPlanUuid());
+                                    return;
+                                }
+
+
+                                makeSubcription(StaticVar.access_token, purchaseToken, this.user_first_name, this.user_last_name, "google", orderId, "", "", "", selectPlan.getInternalPlanUuid());
+
+                                // showToast("You have bought the " + sku + ". Excellent");
+                                return;
+                            } catch (JSONException e) {
+                                showToast(getString(R.string.error_purchase_data));
+                                e.printStackTrace();
                             }
                         }
-                );
+
+                        return;
+                    } catch (Exception ee) {
+                        ee.printStackTrace();
+                        return;
+                    }
                 }
 
 
+                if (resultCode == RESULT_OK) {
+//            Debug.printToast("Result Code is OK", getApplicationContext());
 
+                    final String name = data.getStringExtra(CreditCardUtils.EXTRA_CARD_HOLDER_NAME);
+                    String cardNumber = data.getStringExtra(CreditCardUtils.EXTRA_CARD_NUMBER);
+                    String expiry = data.getStringExtra(CreditCardUtils.EXTRA_CARD_EXPIRY);
+                    String cardCVC = data.getStringExtra(CreditCardUtils.EXTRA_CARD_CVV);
+
+                    if (name.equals("") || name.equals("")) {
+                        showToast(getString(R.string.cardholdererror));
+                        return;
+                    }
+                    if (cardNumber.equals("") || cardNumber.equals("")) {
+                        showToast(getString(R.string.cardnumbererror));
+                        return;
+                    }
+                    if (expiry.equals("") || expiry.equals("")) {
+                        showToast(getString(R.string.expirycarderror));
+                        return;
+                    }
+                    if (cardCVC.equals("") || cardCVC.equals("")) {
+                        showToast(getString(R.string.CVCCardError));
+                        return;
+                    }
+
+                    String nb[] = expiry.split("/");
+                    int cardExpMonth = Integer.parseInt(nb[0]);
+                    int cardExpYear = Integer.parseInt(nb[1]);
+
+                    if (requestCode == CREATE_NEW_CARD) {
+
+                        Card card = new Card(
+                                cardNumber,
+                                cardExpMonth,
+                                cardExpYear,
+                                cardCVC
+                        );
+
+                        card.validateNumber();
+                        card.validateCVC();
+
+
+                        Stripe stripe = null;
+                        try {
+                            stripe = new Stripe(StaticVar.StripeKey);
+                        } catch (AuthenticationException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (stripe != null) {
+                            stripe.createToken(
+                                    card,
+                                    new TokenCallback() {
+                                        public void onSuccess(Token token) {
+                                            // Send token to your server
+                                            makeSubcription(StaticVar.access_token, token.getId(), name, name, "stripe", "", "", "", "", selectPlan.getInternalPlanUuid());
+                                        }
+
+                                        public void onError(Exception error) {
+                                            // Show localized error message
+                                            showToast(error.toString());
+
+
+                                        }
+                                    }
+                            );
+                        }
+
+
+                    }
+                }
             }
+        }catch (Exception ee)
+        {
+
         }
 
 

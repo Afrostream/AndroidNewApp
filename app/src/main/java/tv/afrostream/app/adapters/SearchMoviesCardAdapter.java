@@ -84,17 +84,21 @@ public class SearchMoviesCardAdapter extends RecyclerView.Adapter {
                 {
                     ee.printStackTrace();
                 }
+				try{
 
-                Intent intent = new Intent(view.getContext(), MovieDetailsActivity.class);
+                Intent intent = new Intent(StaticVar.mainAct.getApplicationContext(), MovieDetailsActivity.class);
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((SearchActivity)view.getContext(), view, "movieimage");
+                        makeSceneTransitionAnimation(StaticVar.searchAct, view, "movieimage");
 
                 intent.putExtra ("movieInfo",item.movie_all_Info.toString());
                 intent.putExtra ("coverImageUrl",item.coverImageUrl.toString());
                 intent.putExtra ("label",item.categorie.toString());
 
                 ActivityCompat.startActivity(view.getContext(), intent, options.toBundle());
+				}catch (Exception ee)
+                {
+				}
 
 
 
