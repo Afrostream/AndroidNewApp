@@ -174,12 +174,12 @@
     <string name="afrostream">Afrostream</string>
     <string name="acceptCgu">I accept the general terms of use</string>
     <string name="pleaseacceptcgu">Please accept the general terms of use</string>
-    <string name="payCondition">I expressly request the immediate commencement of service and I waive the right of withdrawal</string>
+    <string name="payCondition">I expressly request the immediatSe commencement of service and I waive the right of withdrawal</string>
     <string name="PleaseAcceptPayCondition">Please accept payment terms</string>
     <string name="desactiver">Disable</string>
     <string name="auto">Auto</string>
     <string name="moncompte">My account</string>
-    <string name="abonnement">Abonnement :</string>
+    <string name="abonnement">SUBSCRIPTION</string>
     <string name="cardholdererror">Please fill card holder name</string>
     <string name="cardnumbererror">Please fill the card number</string>
     <string name="expirycarderror">Please fill the expiry card date</string>
@@ -204,4 +204,9 @@
     <string name="update">App Update</string>
     <string name="newversiondetect">New version detected, please update your application via google play store</string>
     <string name="errorcoupon">Please enter a valid coupon</string>
+    <string name="info_perso">INFORMATIONS PERSONNELLES</string>
+    <string name="dateN">Date de naissance</string>
+    <string name="address">Adresse</string>
+    <string name="gender">Genre</string>
+    <string name="enregistrer">Enregistrer</string>
 </resources>

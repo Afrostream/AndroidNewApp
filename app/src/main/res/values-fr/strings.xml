@@ -178,7 +178,7 @@
     <string name="desactiver">Désactiver</string>
     <string name="auto">Auto</string>
     <string name="moncompte">Mon compte</string>
-    <string name="abonnement">Abonnement :</string>
+    <string name="abonnement">ABONNEMENT</string>
     <string name="cardholdererror">Veuillez saisir le nom du titulaire de la carte</string>
     <string name="cardnumbererror">Veuillez saisir votre numéro de carte</string>
     <string name="expirycarderror">Veuillez saisir la date d\'éxpiration</string>
@@ -203,4 +203,9 @@
     <string name="update">Mise a jour</string>
     <string name="newversiondetect">Nouvelle version détectée, veuillez mettre à jour votre application via le play store google</string>
     <string name="errorcoupon">Veuillez entrer un coupon valide</string>
+    <string name="info_perso">INFORMATIONS PERSONNELLES</string>
+    <string name="dateN">Date de naissance</string>
+    <string name="address">Adresse</string>
+    <string name="gender">Genre</string>
+    <string name="enregistrer">Enregistrer</string>
 </resources>

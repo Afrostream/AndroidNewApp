@@ -80,6 +80,7 @@ import tv.afrostream.app.fragments.CategoriesFragement;
 import tv.afrostream.app.fragments.HomeFragment;
 import tv.afrostream.app.fragments.ListFavorisFragment;
 import tv.afrostream.app.R;
+import tv.afrostream.app.utils.SystemUIUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -1453,6 +1454,8 @@ public SharedPreferences sharedpreferences;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             try {
+
+
 
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

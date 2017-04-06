@@ -263,9 +263,28 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
     try {
 
         loading_spinner.setVisibility(View.GONE);
+        String country="";
+        try {
 
 
-        String country=response.getString("countryCode");
+             country = response.getString("countryCode");
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
+        }
+
+
+        String Language="FR";
+        try {
+
+
+             Language= Locale.getDefault().getLanguage().toUpperCase();
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
+        }
+
+
 
       //  country="FR";
 
@@ -273,7 +292,7 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
 
 
         StaticVar.CountryCode=country;
-        String Language= Locale.getDefault().getLanguage().toUpperCase();
+
 
         StaticVar.ApiUrlParams="?country="+country+"&language="+Language;
 
@@ -292,6 +311,63 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
     loading_spinner.setVisibility(View.GONE);
 
 }
+
+
+    private  void OnResponseAuthGeoFacebook(JSONObject response,final String TokenFb,final String email,final String firstname,final String lastname)
+    {
+
+
+        try {
+
+            loading_spinner.setVisibility(View.GONE);
+            String country="";
+            try {
+
+
+                country = response.getString("countryCode");
+            }catch (Exception ee)
+            {
+                ee.getStackTrace();
+            }
+
+
+            String Language="FR";
+            try {
+
+
+                Language= Locale.getDefault().getLanguage().toUpperCase();
+            }catch (Exception ee)
+            {
+                ee.getStackTrace();
+            }
+
+
+
+            //  country="FR";
+
+            if (country.equals("null") ||country.equals("")  )country="--";
+
+
+            StaticVar.CountryCode=country;
+
+
+            StaticVar.ApiUrlParams="?country="+country+"&language="+Language;
+
+            makeLoginFacebook(  TokenFb,  email,  firstname,  lastname);
+
+
+
+
+
+        } catch (Exception e) {
+
+            bntLogin.setEnabled(true);
+            e.printStackTrace();
+            showToast("Error: " + e.getMessage());
+        }
+        loading_spinner.setVisibility(View.GONE);
+
+    }
     private void makeLoginFacebook(final String TokenFb,final String email,final String firstname,final String lastname) {
 
 
@@ -570,6 +646,112 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
 
     }
 
+
+
+
+    private void makeAuthGeoFacebook(final String TokenFb,final String email,final String firstname,final String lastname) {
+
+
+
+
+
+        loading_spinner.setVisibility(View.VISIBLE);
+        String urlJsonObj= StaticVar.BaseUrl+"/auth/geo";
+
+
+
+
+        Cache cache = AppController.getInstance().getRequestQueue().getCache();
+        Cache.Entry entry = cache.get(urlJsonObj);
+        if(entry != null){
+            try {
+                String data = new String(entry.data, "UTF-8");
+                // handle data, like converting it to xml, json, bitmap etc.,
+
+                loading_spinner.setVisibility(View.GONE);
+
+                JSONObject response=new JSONObject(data) ;
+
+                OnResponseAuthGeoFacebook(response,   TokenFb,  email,  firstname,  lastname);
+
+
+            } catch (Exception e) {
+                loading_spinner.setVisibility(View.GONE);
+                e.printStackTrace();
+                FirebaseCrash.log(e.getMessage() +" -- "+e.getStackTrace());
+            }
+        }
+        else {
+
+
+
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                    urlJsonObj, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    loading_spinner.setVisibility(View.GONE);
+
+                    OnResponseAuthGeoFacebook(response,   TokenFb,  email,  firstname,  lastname);
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    loading_spinner.setVisibility(View.GONE);
+                    bntLogin.setEnabled(true);
+
+
+
+                    try {
+                        if(error.networkResponse != null && error.networkResponse.data != null){
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson=error2.getMessage();
+                            JSONObject errorJ=new JSONObject(errorJson);
+                            String MessageError=errorJ.getString("error");
+
+                            showToast("Error: " + MessageError);
+                            FirebaseCrash.log("Geo Error :"+MessageError);
+
+                        }
+                    }catch (Exception ee)
+                    {
+                        ee.printStackTrace();
+                    }
+
+
+
+                }
+
+
+
+            } ) {
+
+                /**
+                 * Passing some request headers
+                 */
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+
+                    // headers.put("key", "Value");
+                    return headers;
+                }
+            };
+
+            // Adding request to request queue
+
+
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        }
+
+
+    }
+
     private void makeApiAuth() {
 
 
@@ -747,11 +929,27 @@ private  void OnResponseAuthGeo(JSONObject response,String Username,String Passw
                                 positive.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        try {
 
-                                        openAppInGooglePlay(getApplicationContext());
+                                            if (sharedpreferences!=null) {
+
+                                                SharedPreferences.Editor editor = sharedpreferences.edit();
 
 
-                                        dialog.dismiss();
+                                                editor.putString("auto_login", "false");
+
+
+                                                editor.commit();
+                                            }
+
+                                            openAppInGooglePlay(getApplicationContext());
+
+
+                                           if (dialog!=null) dialog.dismiss();
+                                        }catch (Exception ee)
+                                        {
+                                            ee.getStackTrace();
+                                        }
 
                                     }
                                 });
@@ -1605,7 +1803,8 @@ final String saveIfSkip = "skipProtectedAppsMessage";
                                                }
                                                // String birthday = object.getString("birthday"); // 01/31/1980 format
 
-                                               makeLoginFacebook(fb_token, email, firstName, lastName);
+                                               makeAuthGeoFacebook(fb_token, email, firstName, lastName);
+
 
                                                try {
 

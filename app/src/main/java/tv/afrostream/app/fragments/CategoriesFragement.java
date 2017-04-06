@@ -1,5 +1,6 @@
 package tv.afrostream.app.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ import tv.afrostream.app.adapters.CategorieMoviesCardAdapter;
 import tv.afrostream.app.models.MovieItemModel;
 import tv.afrostream.app.R;
 import tv.afrostream.app.activitys.MainActivity;
+import tv.afrostream.app.utils.SystemUIUtil;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -614,6 +616,16 @@ public class CategoriesFragement extends Fragment {
         mainA.IsSearchButton=false;
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mainA.setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+
+
+            }catch (Exception ee)
+            {
+                ee.printStackTrace();
+            }
+        }
 
         loading_spinner=(ProgressBar) view.findViewById(R.id.loading_spinner);
 

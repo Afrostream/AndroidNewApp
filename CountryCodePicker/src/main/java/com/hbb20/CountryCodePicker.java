@@ -900,6 +900,13 @@ public class CountryCodePicker extends RelativeLayout {
     public void setContentColor(int contentColor) {
         this.contentColor = contentColor;
         textView_selectedCountry.setTextColor(this.contentColor);
+
+
+        if (getEditText_registeredCarrierNumber() != null) {
+            getEditText_registeredCarrierNumber().setTextColor(this.contentColor);
+            getEditText_registeredCarrierNumber().setHintTextColor(this.contentColor);
+
+        }
         imageViewArrow.setColorFilter(this.contentColor, PorterDuff.Mode.SRC_IN);
     }
 

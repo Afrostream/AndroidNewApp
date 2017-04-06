@@ -2,6 +2,7 @@ package tv.afrostream.app.fragments;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -23,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -832,6 +834,10 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+
+
+
+
         loading_spinner=(ProgressBar) view.findViewById(R.id.loading_spinner);
         pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
 
@@ -843,6 +849,17 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mainA.setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+
+                mainA.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+                mainA.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }catch (Exception ee)
+            {
+                ee.printStackTrace();
+            }
+        }
 
 
 

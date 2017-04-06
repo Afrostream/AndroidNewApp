@@ -23,11 +23,24 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.crash.FirebaseCrash;
+
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
+import tv.afrostream.app.AppController;
 import tv.afrostream.app.R;
 import tv.afrostream.app.utils.StaticVar;
 
@@ -39,6 +52,7 @@ import tv.afrostream.app.utils.StaticVar;
 public class WebViewAuth extends AppCompatActivity {
 
     private Toast toast;
+    WebView wv;
     SharedPreferences sharedpreferences;
     private void showToast(String message) {
         if (toast != null) {
@@ -47,6 +61,166 @@ public class WebViewAuth extends AppCompatActivity {
         }
         toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+
+
+    private  void OnResponseAuthGeo(JSONObject response,String url)
+    {
+
+
+        try {
+
+
+            String country="";
+            try {
+
+
+                country = response.getString("countryCode");
+            }catch (Exception ee)
+            {
+                ee.getStackTrace();
+            }
+
+
+            String Language="FR";
+            try {
+
+
+                Language= Locale.getDefault().getLanguage().toUpperCase();
+            }catch (Exception ee)
+            {
+                ee.getStackTrace();
+            }
+
+
+
+            //  country="FR";
+
+            if (country.equals("null") ||country.equals("")  )country="--";
+
+
+            StaticVar.CountryCode=country;
+
+
+            StaticVar.ApiUrlParams="?country="+country+"&language="+Language;
+
+            wv.loadUrl(url);
+
+
+
+
+
+        } catch (Exception e) {
+
+
+            e.printStackTrace();
+            showToast("Error: " + e.getMessage());
+        }
+
+
+    }
+
+    private void makeAuthGeoLoadUrl(final String url) {
+
+
+
+
+
+
+        String urlJsonObj= StaticVar.BaseUrl+"/auth/geo";
+
+
+
+
+        Cache cache = AppController.getInstance().getRequestQueue().getCache();
+        Cache.Entry entry = cache.get(urlJsonObj);
+        if(entry != null){
+            try {
+                String data = new String(entry.data, "UTF-8");
+                // handle data, like converting it to xml, json, bitmap etc.,
+
+
+
+                JSONObject response=new JSONObject(data) ;
+
+                OnResponseAuthGeo(response, url);
+
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                FirebaseCrash.log(e.getMessage() +" -- "+e.getStackTrace());
+            }
+        }
+        else {
+
+
+
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                    urlJsonObj, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+
+
+
+                    OnResponseAuthGeo(response, url);
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+
+
+
+
+                    try {
+                        if(error.networkResponse != null && error.networkResponse.data != null){
+                            VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                            String errorJson=error2.getMessage();
+                            JSONObject errorJ=new JSONObject(errorJson);
+                            String MessageError=errorJ.getString("error");
+
+                            showToast("Error: " + MessageError);
+                            FirebaseCrash.log("Geo Error :"+MessageError);
+
+                        }
+                    }catch (Exception ee)
+                    {
+                        ee.printStackTrace();
+                    }
+
+
+
+                }
+
+
+
+            } ) {
+
+                /**
+                 * Passing some request headers
+                 */
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+
+                    // headers.put("key", "Value");
+                    return headers;
+                }
+            };
+
+            // Adding request to request queue
+
+
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        }
+
+
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -179,7 +353,7 @@ public class WebViewAuth extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-        WebView wv=(WebView)findViewById(R.id.webview);
+         wv=(WebView)findViewById(R.id.webview);
         final ProgressBar pb=(ProgressBar) findViewById(R.id.pB1);
 
 
@@ -227,7 +401,7 @@ public class WebViewAuth extends AppCompatActivity {
 
             if (url!="" && url!="null")
             {
-                wv.loadUrl(url);
+                makeAuthGeoLoadUrl(url);
             }
         }
 

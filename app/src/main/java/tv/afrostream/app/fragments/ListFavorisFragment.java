@@ -1,5 +1,6 @@
 package tv.afrostream.app.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import tv.afrostream.app.adapters.ListFavorisMoviesCardAdapter;
 import tv.afrostream.app.models.MovieItemModel;
 import tv.afrostream.app.R;
 import tv.afrostream.app.activitys.MainActivity;
+import tv.afrostream.app.utils.SystemUIUtil;
 
 /**
  * Created by bahri on 27/01/2017.
@@ -267,6 +270,19 @@ public class ListFavorisFragment extends Fragment {
         mainA.IsSearchButton=false;
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mainA.setSupportActionBar(toolbar);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+
+
+
+
+            }catch (Exception ee)
+            {
+                ee.printStackTrace();
+            }
+        }
 
         loading_spinner=(ProgressBar) view.findViewById(R.id.loading_spinner);
 

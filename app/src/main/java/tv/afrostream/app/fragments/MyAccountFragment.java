@@ -2,6 +2,7 @@ package tv.afrostream.app.fragments;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.LruCache;
@@ -29,12 +30,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.hbb20.CountryCodePicker;
 
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import tv.afrostream.app.AppController;
@@ -42,6 +45,7 @@ import tv.afrostream.app.R;
 import tv.afrostream.app.activitys.MainActivity;
 import tv.afrostream.app.activitys.MovieDetailsActivity;
 import tv.afrostream.app.utils.StaticVar;
+import tv.afrostream.app.utils.SystemUIUtil;
 
 /**
  * Created by bahri on 31/03/2017.
@@ -57,7 +61,7 @@ public class MyAccountFragment extends Fragment {
     RecyclerView rc;
     Button bnt_cancel_subscription;
     TextView txtcancel;
-
+    CountryCodePicker txtPhone;
     private void makeGetUserImage(String url, final ImageView mImageView) {
 
 
@@ -233,7 +237,15 @@ public void CancelSubscription(String subscriptionUuid)
         mainA.IsSearchButton=false;
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
 
+
+            }catch (Exception ee)
+            {
+                ee.printStackTrace();
+            }
+        }
 
         mainA.setSupportActionBar(toolbar);
 
@@ -265,12 +277,17 @@ public void CancelSubscription(String subscriptionUuid)
 
          txtcancel=(TextView)view.findViewById(R.id.txtcancel);
         ImageView navUserPic=(ImageView)view.findViewById(R.id.userimageView);
+        txtPhone=(CountryCodePicker) view.findViewById(R.id.txtCountryPhone);
+
 
          bnt_cancel_subscription=(Button)view.findViewById(R.id.bnt_cancel_subscription);
 
 
 
+        String Language= Locale.getDefault().getLanguage().toUpperCase();
 
+        if (Language.equals("FR"))
+            txtPhone.changeLanguage(CountryCodePicker.Language.FRENCH);
 
 
 
