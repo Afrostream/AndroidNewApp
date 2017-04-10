@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <style name="EditText" />
+
+    <style name="EditText.Common">
+        <item name="android:background">@drawable/edittext_common_selector</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColorHint">#9d9ea7</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>

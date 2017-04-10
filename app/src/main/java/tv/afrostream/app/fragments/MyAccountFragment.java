@@ -1,5 +1,6 @@
 package tv.afrostream.app.fragments;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -15,8 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +38,9 @@ import com.hbb20.CountryCodePicker;
 
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -62,6 +68,164 @@ public class MyAccountFragment extends Fragment {
     Button bnt_cancel_subscription;
     TextView txtcancel;
     CountryCodePicker txtPhone;
+    EditText txtFirstname;
+    EditText txtLastname;
+    EditText txtDateN;
+    EditText txtAdresse;
+    EditText txtVille;
+    com.countrypicker.CountryCodePicker txtPays;
+    RadioButton chkMen;
+    RadioButton chkWomen;
+    String DateStart="";
+    Button bnt_save;
+
+    DatePickerDialog.OnDateSetListener ondatestart = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            try{
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String nn=sdf.format(newDate.getTime()).toString();
+                txtDateN.setText(nn);
+                DateStart=nn;
+
+            }catch (Exception ee)
+            {
+                ee.printStackTrace();
+            }
+
+
+        }
+    };
+
+    private void setDateTimeStart() {
+
+        try {
+            DatePickerFragment date = new DatePickerFragment();
+            /**
+             * Set Up Current Date Into dialog
+             */
+            Calendar calender = Calendar.getInstance();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                calender.setTime(sdf.parse(DateStart));
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }// all done
+
+            Bundle args = new Bundle();
+            args.putInt("year", calender.get(Calendar.YEAR));
+            args.putInt("month", calender.get(Calendar.MONTH));
+            args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+
+
+            date.setArguments(args);
+            /**
+             * Set Call back to capture selected date
+             */
+            date.setCallBack(ondatestart);
+            date.show(getActivity().getSupportFragmentManager(), "Date Picker");
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+    }
+
+
+    private void makeUpdateInfoUser(final String access_token, String Firstname, String Lastname,String DateN,String Phone,String Country,String City,String Address,String Gender) {
+
+
+        if (access_token.equals("") )
+        {
+
+            showToast(this.getString(R.string.activity_login_error_login_empty) );
+            return;
+        }
+
+
+
+        String urlJsonObj= StaticVar.BaseUrl+"/api/users/me";
+
+
+        JSONObject params=new JSONObject();
+        try {
+            params.put("first_name", Firstname);
+            params.put("last_name", Lastname);
+            params.put("telephone", Phone);
+            params.put("birthDate", DateN);
+            params.put("postalAddressCountry", Country);
+            params.put("postalAddressCity", City);
+            params.put("postalAddressStreet", Address);
+            params.put("gender", Gender);
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.PUT,urlJsonObj,params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.d("test",response.toString());
+                        showToast(getString(R.string.save_ok));
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //  loading_spinner.setVisibility(View.GONE);
+                error.printStackTrace();
+                //  VolleyLog.d(TAG, "Error: " + error.getMessage());
+                try {
+                    if(error.networkResponse != null && error.networkResponse.data != null){
+                        VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                        String errorJson=error2.getMessage();
+                        JSONObject errorJ=new JSONObject(errorJson);
+                        String MessageError=errorJ.getString("error");
+                        showToast("Error update user info: " + MessageError);
+
+                    }
+                }catch (Exception ee) {
+                    ee.printStackTrace();
+                }
+
+
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer "+access_token);
+                // headers.put("key", "Value");
+                return headers;
+            }
+        };
+
+        // Adding request to request queue
+
+
+        AppController.getInstance().addToRequestQueue(req);
+
+
+
+
+
+
+    }
+
+
     private void makeGetUserImage(String url, final ImageView mImageView) {
 
 
@@ -275,14 +439,25 @@ public void CancelSubscription(String subscriptionUuid)
         TextView navName=(TextView)view.findViewById(R.id.txtnavname);
         TextView navEmail=(TextView)view.findViewById(R.id.txtnavemail);
 
+
+         txtFirstname=(EditText) view.findViewById(R.id.txtFirstname);
+         txtLastname=(EditText) view.findViewById(R.id.txtLastname);
+         txtDateN=(EditText) view.findViewById(R.id.txtDateN);
+         txtAdresse=(EditText) view.findViewById(R.id.txtAdresse);
+         txtVille=(EditText) view.findViewById(R.id.txtVille);
+         txtPays=(com.countrypicker.CountryCodePicker) view.findViewById(R.id.txtPays);
+        chkMen=(RadioButton) view.findViewById(R.id.radio_homme);
+        chkWomen=(RadioButton) view.findViewById(R.id.radio_femme);
+        bnt_save=(Button)  view.findViewById(R.id.bnt_save);
+
          txtcancel=(TextView)view.findViewById(R.id.txtcancel);
         ImageView navUserPic=(ImageView)view.findViewById(R.id.userimageView);
-        txtPhone=(CountryCodePicker) view.findViewById(R.id.txtCountryPhone);
+
 
 
          bnt_cancel_subscription=(Button)view.findViewById(R.id.bnt_cancel_subscription);
 
-
+        txtPhone=(CountryCodePicker) view.findViewById(R.id.txtCountryPhone);
 
         String Language= Locale.getDefault().getLanguage().toUpperCase();
 
@@ -290,7 +465,43 @@ public void CancelSubscription(String subscriptionUuid)
             txtPhone.changeLanguage(CountryCodePicker.Language.FRENCH);
 
 
+        SimpleDateFormat formatDateN = new SimpleDateFormat("yyyy-MM-dd");
 
+        txtPhone.setFullNumber(StaticVar.user_phone);
+        txtFirstname.setText(StaticVar.user_first_name);
+        txtLastname.setText(StaticVar.user_last_name);
+        try {
+            Date txtDateND = formatDateN.parse(mainA.subPeriodStartedDate);
+            txtDateN.setText(formatDateN.format(txtDateND).toString());
+            DateStart=formatDateN.format(txtDateND).toString();
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+        txtVille.setText(StaticVar.user_postalAddressCity);
+        txtAdresse.setText(StaticVar.user_address);
+
+        try {
+            if (!StaticVar.user_postalAddressCountry.equals(""))txtPays.setCountryForNameCode(StaticVar.user_postalAddressCountry.toUpperCase());
+        }catch (Exception ee){}
+
+        if (StaticVar.user_gender.equals("men"))
+        {
+            chkMen.setChecked(true);
+
+        }else
+        {
+            chkWomen.setChecked(true);
+        }
+
+        txtDateN.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                setDateTimeStart();
+            }
+        });
 
         if (StaticVar.facebook_image_profil_url.equals(""))
             makeGetUserImage(StaticVar.user_picture_url,navUserPic);
@@ -336,6 +547,67 @@ public void CancelSubscription(String subscriptionUuid)
             txtcancel.setVisibility(View.VISIBLE);
 
         }
+
+        bnt_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtFirstname.getText().toString().trim().equals("") )
+                {
+                  showToast(getString(R.string.please_fill_firstname));
+                    return;
+                }
+                if (txtLastname.getText().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_lastname));
+                    return;
+                }
+
+                if (txtDateN.getText().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_birthday));
+                    return;
+                }
+                if (txtPays.getSelectedCountryCode().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_country));
+                    return;
+                }
+
+                if (txtAdresse.getText().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_address));
+                    return;
+                }
+                if (txtVille.getText().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_city));
+                    return;
+                }
+                if (txtPhone.getFullNumber().toString().trim().equals("") )
+                {
+                    showToast(getString(R.string.please_fill_phone));
+                    return;
+                }
+
+                if (chkMen.isChecked()==false && chkWomen.isChecked()==false)
+                {
+                    showToast(getString(R.string.please_fill_genre));
+                    return;
+                }
+
+                String genre="";
+                if (chkMen.isChecked())
+                    genre="men";
+                            else
+                    genre="women";
+
+
+
+                makeUpdateInfoUser(StaticVar.access_token,txtFirstname.getText().toString(),txtLastname.getText().toString(),txtDateN.getText().toString(),txtPhone.getFullNumber().toString()
+                        ,txtPays.getSelectedCountryCode().toString(),txtVille.getText().toString(),txtAdresse.getText().toString(),genre);
+
+            }
+        });
 
         txtcancel.setText(getString(R.string.subsription_cancelled)+" "+date2);
         final String finalDate2 = date2;

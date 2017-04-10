@@ -32,6 +32,9 @@
 
 -keep public class android.app.ActivityTransitionCoordinator
 
+-keep public class android.support.v4.app.** { *; }
+-keep class com.facebook.** { *; }
+
 -keep class org.apache.http.** { *; }
 -keepclassmembers class org.apache.http.** {*;}
 -dontwarn org.apache.**

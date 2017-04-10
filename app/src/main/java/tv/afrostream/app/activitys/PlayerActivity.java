@@ -1381,9 +1381,14 @@ try {
                 error.printStackTrace();
               //  VolleyLog.d(TAG, "Error: " + error.getMessage());
                 try {
-                        String errorStr=error.getMessage();
-                        if (errorStr.length()>300)errorStr=errorStr.substring(0,300);
-                        showToast("Error " + errorStr );
+                    if(error.networkResponse != null && error.networkResponse.data != null){
+                        VolleyError error2 = new VolleyError(new String(error.networkResponse.data));
+                        String errorJson=error2.getMessage();
+                        JSONObject errorJ=new JSONObject(errorJson);
+                        String MessageError=errorJ.getString("error");
+                       // showToast("Error update player position: " + MessageError);
+
+                    }
                     }catch (Exception ee) {
                     ee.printStackTrace();
                         }

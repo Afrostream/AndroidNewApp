@@ -98,6 +98,19 @@ public class MainActivity extends AppCompatActivity
     public String user_last_name="";
     public String user_picture_url="";
     public String user_email="";
+
+
+    public String user_gender="";
+    public String user_birthday="";
+    public String user_postalAddressCity="";
+    public String user_postalAddressCountry="";
+    public String user_phone="";
+    public String user_address="";
+
+
+
+
+
     TextView navName;
     TextView navEmail;
     ImageView navUserPic;
@@ -516,6 +529,15 @@ public SharedPreferences sharedpreferences;
 
                 user_picture_url=response.getString("picture");
 
+                user_gender= response.getString("gender");
+                user_birthday=response.getString("birthDate");
+
+                user_postalAddressCity=response.getString("postalAddressCity");
+                user_postalAddressCountry=response.getString("postalAddressCountry");
+                user_address=response.getString("postalAddressStreet");
+                user_phone=response.getString("telephone");
+
+
 
                 user_email=response.getString("email");
 
@@ -525,10 +547,28 @@ public SharedPreferences sharedpreferences;
                 if (user_last_name.equals("null"))user_last_name="";
                 if (user_picture_url.equals("null"))user_picture_url="";
                 if (user_email.equals("null"))user_email="";
+
+
+                if (user_gender.equals("null"))user_gender="";
+                if (user_birthday.equals("null"))user_birthday="";
+                if (user_postalAddressCity.equals("null"))user_postalAddressCity="";
+                if (user_postalAddressCountry.equals("null"))user_postalAddressCountry="";
+                if (user_phone.equals("null"))user_phone="";
+                if (user_address.equals("null"))user_address="";
+
+
                 StaticVar.user_first_name=user_first_name;
                 StaticVar.user_last_name=user_last_name;
                 StaticVar.user_picture_url=user_picture_url;
                 StaticVar.user_email=user_email;
+
+                StaticVar.user_gender=user_gender;
+                StaticVar.user_birthday=user_birthday;
+                StaticVar.user_postalAddressCity=user_postalAddressCity;
+                StaticVar.user_postalAddressCountry=user_postalAddressCountry;
+                StaticVar.user_phone=user_phone;
+                StaticVar.user_address=user_address;
+
 
                 StaticVar.user_id=user_id;
 

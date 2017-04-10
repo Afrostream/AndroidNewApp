@@ -135,6 +135,7 @@ dependencies {
     compile project(':core')
     compile project(':commons')
     compile project(':CountryCodePicker')
+    compile project(':countryPicker')
     //testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

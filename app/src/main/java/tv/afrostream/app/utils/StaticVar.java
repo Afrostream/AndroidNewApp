@@ -89,6 +89,13 @@ public class StaticVar {
     public static String user_last_name="";
     public static String user_email="";
 
+    public static String user_gender="";
+    public static  String user_birthday="";
+    public static String user_postalAddressCity="";
+    public static String user_postalAddressCountry="";
+    public static String user_phone="";
+    public static String user_address="";
+
 
     public static String  Subscription_subscriptionBillingUuid="";
     public static String  Subscription_isCancelable="";

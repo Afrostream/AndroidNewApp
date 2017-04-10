@@ -208,4 +208,15 @@
     <string name="address">Adresse</string>
     <string name="gender">Genre</string>
     <string name="enregistrer">Enregistrer</string>
+    <string name="country">Pays</string>
+    <string name="ville">Ville</string>
+    <string name="please_fill_firstname">Veuillez saisir votre prénom</string>
+    <string name="please_fill_lastname">Veuillez saisir votre nom</string>
+    <string name="please_fill_birthday">Veuillez saisir votre date de naissance</string>
+    <string name="please_fill_country">Veuillez saisir votre Pays de residence</string>
+    <string name="please_fill_address">Veuillez saisir votre Adresse</string>
+    <string name="please_fill_city">Veuillez saisir votre ville de résidence</string>
+    <string name="please_fill_genre">Veuillez saisir séléctionner votre genre</string>
+    <string name="please_fill_phone">Veuillez saisir votre numéro de téléphone</string>
+    <string name="save_ok">Vos informations ont bien été enregistrée</string>
 </resources>

@@ -866,7 +866,11 @@ public class CountryCodePicker extends RelativeLayout {
      */
     public void setFullNumber(String fullNumber) {
         Country country = Country.getCountryForNumber(customLanguage, preferredCountries, fullNumber);
+        if (country!=null)
         setSelectedCountry(country);
+        else
+            resetToDefaultCountry();
+
         String carrierNumber = detectCarrierNumber(fullNumber, country);
         if (getEditText_registeredCarrierNumber() != null) {
             getEditText_registeredCarrierNumber().setText(carrierNumber);
