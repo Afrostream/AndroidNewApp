@@ -30,6 +30,10 @@ public class StaticVar {
     public static String clientApiID="85f700d9-4a80-4913-8223-e0d49fef3a05"; //prod et dev
 
 
+    public static final String CouponUUIDGenStaging="e9d0c006-175a-4564-a736-7cc9edb3e532";
+    public static final String CouponUUIDGenProd="d9e879c7-e445-409f-ad44-817e30e62fc0";
+
+
 
 
     public static String DownloadFolderName="AfrostreamDownload";

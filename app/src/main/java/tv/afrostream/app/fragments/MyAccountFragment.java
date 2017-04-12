@@ -34,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hbb20.CountryCodePicker;
 
 import org.json.JSONObject;
@@ -78,6 +79,8 @@ public class MyAccountFragment extends Fragment {
     RadioButton chkWomen;
     String DateStart="";
     Button bnt_save;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     DatePickerDialog.OnDateSetListener ondatestart = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -267,7 +270,7 @@ public class MyAccountFragment extends Fragment {
 
     }
 
-public void CancelSubscription(String subscriptionUuid)
+public void CancelSubscription(final String subscriptionUuid)
 {
     String urlJsonObj = StaticVar.BaseUrl + "/api/billings/subscriptions/"+subscriptionUuid+"/cancel";
 
@@ -289,6 +292,24 @@ public void CancelSubscription(String subscriptionUuid)
                 showToast(getString(R.string.canceled_subscription));
 
                 txtcancel.setVisibility(View.VISIBLE);
+
+                try {
+
+
+                    if (mFirebaseAnalytics != null) {
+
+                        Bundle params = new Bundle();
+                        params.putString("subscriptionUuid", subscriptionUuid);
+
+
+
+                        mFirebaseAnalytics.logEvent("cancel_subscription", params);
+                    }
+                }catch (Exception ee)
+                {
+                    ee.printStackTrace();
+                }
+
 
 
 
@@ -461,8 +482,10 @@ public void CancelSubscription(String subscriptionUuid)
 
         String Language= Locale.getDefault().getLanguage().toUpperCase();
 
-        if (Language.equals("FR"))
+        if (Language.equals("FR")) {
+            txtPays.changeLanguage(com.countrypicker.CountryCodePicker.Language.FRENCH);
             txtPhone.changeLanguage(CountryCodePicker.Language.FRENCH);
+        }
 
 
         SimpleDateFormat formatDateN = new SimpleDateFormat("yyyy-MM-dd");
@@ -489,7 +512,7 @@ public void CancelSubscription(String subscriptionUuid)
         {
             chkMen.setChecked(true);
 
-        }else
+        }else if (StaticVar.user_gender.equals("women"))
         {
             chkWomen.setChecked(true);
         }
@@ -548,6 +571,13 @@ public void CancelSubscription(String subscriptionUuid)
 
         }
 
+
+        try{
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+        }catch(Exception ee)
+        {}
+
+
         bnt_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -601,10 +631,10 @@ public void CancelSubscription(String subscriptionUuid)
                             else
                     genre="women";
 
-
+                String country=txtPays.getSelectedCountryNameCode().toString();
 
                 makeUpdateInfoUser(StaticVar.access_token,txtFirstname.getText().toString(),txtLastname.getText().toString(),txtDateN.getText().toString(),txtPhone.getFullNumber().toString()
-                        ,txtPays.getSelectedCountryCode().toString(),txtVille.getText().toString(),txtAdresse.getText().toString(),genre);
+                        ,country,txtVille.getText().toString(),txtAdresse.getText().toString(),genre);
 
             }
         });

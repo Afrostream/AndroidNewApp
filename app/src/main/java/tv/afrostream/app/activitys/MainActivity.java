@@ -71,6 +71,7 @@ import java.util.concurrent.TimeUnit;
 import tv.afrostream.app.adapters.SerieSaisonListAdapter;
 import tv.afrostream.app.fragments.MyAccountFragment;
 import tv.afrostream.app.fragments.MyDownloadFragment;
+import tv.afrostream.app.fragments.ParrainageFragment;
 import tv.afrostream.app.models.SerieItemModel;
 import tv.afrostream.app.models.SerieSaisonModel;
 import tv.afrostream.app.utils.StaticVar;
@@ -130,6 +131,7 @@ public SharedPreferences sharedpreferences;
     TimerTask timerTask;
     public String subPeriodStartedDate="";
     public String subPeriodEndsDate="";
+    public Boolean subIsPromoAfr=false;
     public String inTrial="";
     public String PlanInternalPlanUuid="";
     public String PlanName="";
@@ -626,8 +628,16 @@ public SharedPreferences sharedpreferences;
                 JSONArray subscriptions=null;
                 try {
                     JSONObject subscriptionsStatus =response.getJSONObject("subscriptionsStatus");
+
                     try {
                         subscriptions = subscriptionsStatus.getJSONArray("subscriptions");
+
+                    }catch (Exception ee)
+                    {}
+
+                    try {
+
+                        subIsPromoAfr=subscriptionsStatus.getBoolean("promoAfr");
                     }catch (Exception ee)
                     {}
 
@@ -1007,6 +1017,7 @@ public SharedPreferences sharedpreferences;
         mn.add(R.string.home).setIcon(R.drawable.home);
         mn.add(R.string.listefavoris).setIcon(R.drawable.favmenu);
         mn.add(R.string.moncompte).setIcon(R.drawable.ic_notif);
+        mn.add(R.string.Parrainage).setIcon(R.drawable.user);
         //mn.add(R.string.mydownload).setIcon(R.drawable.downloadicon);
         final SubMenu catMenu = mn.addSubMenu(R.string.categories).setIcon(R.drawable.categories);
 
@@ -1887,7 +1898,25 @@ drawer.closeDrawer(GravityCompat.START);
                         ft.commit();
                     }
 
-            }else if (title.equals(getString(R.string.mydownload)))
+
+            }
+
+            else if (title.equals(getString( R.string.Parrainage)))
+            {
+
+                drawer.closeDrawer(GravityCompat.START);
+                if (findViewById(R.id.main_fragment_container) != null) {
+
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                    ft.replace(R.id.main_fragment_container, new ParrainageFragment());
+
+                    ft.commit();
+                }
+
+
+            }
+            else if (title.equals(getString(R.string.mydownload)))
             {
 
                /* drawer.closeDrawer(GravityCompat.START);

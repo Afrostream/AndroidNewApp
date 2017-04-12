@@ -55,7 +55,7 @@
 
     <style name="Theme.app" parent="Theme.AppCompat.NoActionBar">
         <!-- Your main app theme items go here-->
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowBackground">@drawable/login_bg</item>
     </style>
 
     <!-- Transparent background for app / activity -->

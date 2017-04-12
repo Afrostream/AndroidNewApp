@@ -214,12 +214,20 @@
     <string name="please_fill_firstname">Veuillez saisir votre prénom</string>
     <string name="please_fill_lastname">Veuillez saisir votre nom</string>
     <string name="please_fill_birthday">Veuillez saisir votre date de naissance</string>
-    <string name="please_fill_country">Veuillez saisir votre Pays de residence</string>
-    <string name="please_fill_address">Veuillez saisir votre Adresse</string>
+    <string name="please_fill_country">Veuillez saisir votre pays de résidence</string>
+    <string name="please_fill_address">Veuillez saisir votre adresse</string>
     <string name="please_fill_city">Veuillez saisir votre ville de résidence</string>
     <string name="please_fill_genre">Veuillez saisir séléctionner votre genre</string>
     <string name="please_fill_phone">Veuillez saisir votre numéro de téléphone</string>
     <string name="save_ok">Vos informations ont bien été enregistrée</string>
-
+    <string name="Parrainage">Parrainage</string>
+    <string name="code_parrainage">Votre code de parrainage :</string>
+    <string name="envoyer_votre_code">ENVOYER VOTRE CODE</string>
+    <string name="parrainage_error">Aucun code de parrainage trouvé</string>
+    <string name="share_with">Partager avec</string>
+    <string name="promo">Félicitations !</string>
+    <string name="parrainage_text1">Faites profiter vos amis d’Afrostream !</string>
+    <string name="parrainage_text2">Offrez deux semaines gratuites en invitant vos amis à découvrir Afrostream</string>
+    <string name="text_parrainage">J’utilise l\'application Afrostream pour regarder les meilleurs films et séries afro en illimité.\nInscris-toi avec mon coupon de parrainage et profite de 14 jours offerts !\nhttps://play.google.com/store/apps/details?id=tv.afrostream.app\nCode coupon :</string>
 
 </resources>

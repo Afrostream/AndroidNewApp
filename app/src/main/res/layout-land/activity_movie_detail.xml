@@ -47,7 +47,7 @@
                     android:id="@+id/imgMovie"
                     android:scaleType="fitXY"
                     android:layout_height="match_parent"
-                    android:background="@drawable/splash_bg"/>
+                    android:background="@drawable/login_bg"/>
 
 
                 <ImageView

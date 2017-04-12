@@ -1,6 +1,8 @@
 package tv.afrostream.app.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Environment;
@@ -31,6 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Request;
@@ -39,6 +42,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,6 +77,10 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
 
     private Toast toast;
 
+    Boolean subIsPromoAfr=false;
+    String PlanDescription="";
+    String PlanInternalPlanUuid="";
+
     ProgressBar loading_spinner=null;
     public String  TAG=HomeFragment.class.getSimpleName();
 
@@ -84,8 +92,8 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
     private int slide_page = 0;
     private Runnable slide_runnable;
 
-
-
+    SharedPreferences sharedpreferences;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private void showToast(String message) {
         try {
             if (toast != null) {
@@ -247,6 +255,67 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
             ListHomeCatAdapter lstHomeCatAdapter = new ListHomeCatAdapter(CatMoviesList,false);
 
             catMoviesRecyclerView.setAdapter(lstHomeCatAdapter);
+
+                try {
+                    if (subIsPromoAfr) {
+                        if (!PlanDescription.equals("")) {
+
+                            if (sharedpreferences!=null) {
+                                String promo_u = sharedpreferences.getString("promo_uuid", "");
+
+                                if (!promo_u.equals(PlanInternalPlanUuid)) {
+
+
+                                    try {
+
+
+                                        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+                                        editor.putString("promo_uuid", PlanInternalPlanUuid);
+
+
+                                        editor.commit();
+
+
+                                    } catch (Exception ee) {
+                                        ee.getStackTrace();
+                                    }
+
+                                    new MaterialDialog.Builder(getActivity())
+                                            .title(R.string.promo)
+                                            .content(PlanDescription)
+                                            .positiveText(R.string.ok)
+
+                                            .show();
+
+
+                                    try {
+
+
+                                        if (mFirebaseAnalytics != null) {
+
+                                            Bundle params = new Bundle();
+                                            params.putString("promo_uuid", PlanInternalPlanUuid);
+
+
+
+                                            mFirebaseAnalytics.logEvent("promo_home_message", params);
+                                        }
+                                    }catch (Exception ee)
+                                    {
+                                        ee.printStackTrace();
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }catch (Exception ee)
+                {
+
+                }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -867,10 +936,32 @@ public class HomeFragment extends Fragment  implements  ViewPager.OnPageChangeLi
         mainA.getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 
+        try {
+            subIsPromoAfr = mainA.subIsPromoAfr;
+            PlanDescription = mainA.PlanDescription;
+            PlanInternalPlanUuid= mainA.PlanInternalPlanUuid;
+        }catch (Exception ee)
+        {}
+
+        try {
+
+            synchronized (this) {
+                sharedpreferences = getActivity().getSharedPreferences(StaticVar.MyPREFERENCES, Context.MODE_PRIVATE);
 
 
 
-        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
+            }
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
+        try{
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+        }catch(Exception ee)
+        {}
+
+     //   CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
 
 
         AppBarLayout appbar = (AppBarLayout)view.findViewById(R.id.app_bar_layout);
