@@ -48,6 +48,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -68,6 +69,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import hotchemi.android.rate.AppRate;
 import tv.afrostream.app.adapters.SerieSaisonListAdapter;
 import tv.afrostream.app.fragments.MyAccountFragment;
 import tv.afrostream.app.fragments.MyDownloadFragment;
@@ -124,6 +126,7 @@ public SharedPreferences sharedpreferences;
     boolean doubleBackToExitPressedOnce = false;
 
     public  DrawerLayout drawer=null;
+   // public EasyRatingDialog easyRatingDialog;
 
     public FirebaseAnalytics mFirebaseAnalytics;
 
@@ -146,6 +149,8 @@ public SharedPreferences sharedpreferences;
     protected void onStart() {
         super.onStart();
 
+      // if(easyRatingDialog!=null) easyRatingDialog.onStart();
+
     }
 
 
@@ -159,6 +164,7 @@ public SharedPreferences sharedpreferences;
     protected void onResume() {
         super.onResume();
         startTimer();
+       // if(easyRatingDialog!=null)  easyRatingDialog.showIfNeeded();
     }
 
     public void showToast(String message) {
@@ -1573,7 +1579,20 @@ public SharedPreferences sharedpreferences;
     makeGetCategories(StaticVar.access_token, navigationView);
 
 
+try{
+    AppRate.with(this)
+            .setInstallDays(0) // default 10, 0 means install day.
+            .setLaunchTimes(5) // default 10
+            .setRemindInterval(2) // default 1
+            .setShowLaterButton(true) // default true
+            .setDebug(false) // default false
 
+            .monitor();
+
+    // Show a dialog if meets conditions
+    AppRate.showRateDialogIfMeetsConditions(this);
+}catch (Exception ee)
+{}
 
 
 

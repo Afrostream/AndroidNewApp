@@ -138,6 +138,8 @@
             android:name=".activitys.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.app.Translucent"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:screenOrientation="portrait"
             android:noHistory="true"
             >
 
@@ -339,6 +341,7 @@
         <activity android:name=".activitys.SearchActivity"
             android:parentActivityName=".activitys.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />

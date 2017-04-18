@@ -229,4 +229,11 @@
     <string name="parrainage_text1">Bring your friends to Afrostream!</string>
     <string name="parrainage_text2">Invite your friends to discover Afrostream by offering them two free weeks.</string>
     <string name="text_parrainage">I use the Afrostream app to watch the best Afro movies and series in unlimited.\nSign up with my sponsorship Voucher and enjoy 14 days off!\nhttps://play.google.com/store/apps/details?id=tv.afrostream.app\nVoucher code : </string>
+
+    <string name="erd_title">Rate this app</string>
+    <string name="erd_message">Hi, take a minute to rate our app and help support to improve more new features. ;)</string>
+    <string name="erd_no_thanks">No, thanks.</string>
+    <string name="erd_remind_me_later">Remind me later.</string>
+    <string name="erd_rate_now">Rate now.</string>
+
 </resources>

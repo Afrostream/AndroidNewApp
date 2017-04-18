@@ -228,4 +228,11 @@
     <string name="parrainage_text1">Faites profiter vos amis d’Afrostream !</string>
     <string name="parrainage_text2">Invitez vos amis à découvrir Afrostream en leur offrant deux semaines gratuites.</string>
     <string name="text_parrainage">J’utilise l\'application Afrostream pour regarder les meilleurs films et séries afro en illimité.\nInscris-toi avec mon coupon de parrainage et profite de 14 jours offerts !\nhttps://play.google.com/store/apps/details?id=tv.afrostream.app\nCode coupon :</string>
+
+    <string name="erd_title">Noter l\'app</string>
+    <string name="erd_message">Bonjour, prenez une minute pour noter notre application et aidez-vous à améliorer de nouvelles fonctionnalités.</string>
+    <string name="erd_no_thanks">No, merci.</string>
+    <string name="erd_remind_me_later">Me rappeler plus tard.</string>
+    <string name="erd_rate_now">Noter maintenant.</string>
+
 </resources>
