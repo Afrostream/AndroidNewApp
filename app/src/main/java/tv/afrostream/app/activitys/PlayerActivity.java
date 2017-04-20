@@ -590,14 +590,20 @@ try {
 
         super.onResume();
 
-        if (mCastContext!=null)  mCastContext.getSessionManager().addSessionManagerListener(mSessionManagerListener,
-                CastSession.class);
-        if (mCastSession == null && mCastContext!=null ) {
-            // Get the current session if there is one
-            mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
+        try {
+
+            if (mCastContext != null)
+                mCastContext.getSessionManager().addSessionManagerListener(mSessionManagerListener,
+                        CastSession.class);
+            if (mCastSession == null && mCastContext != null) {
+                // Get the current session if there is one
+                mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
+            }
+
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
         }
-
-
 
         if (( player == null)) {
             initializePlayer();
@@ -611,9 +617,15 @@ try {
 
 
         super.onPause();
+        try {
 
-        if (mCastContext!=null) mCastContext.getSessionManager().removeSessionManagerListener(mSessionManagerListener,
-                CastSession.class);
+            if (mCastContext != null)
+                mCastContext.getSessionManager().removeSessionManagerListener(mSessionManagerListener,
+                        CastSession.class);
+        }catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
 
         releasePlayer();
         stoptimertask();
@@ -1291,13 +1303,15 @@ try {
                 .build();
     }
     private void loadRemoteMedia(int position, boolean autoPlay) {
-        if (mCastSession == null) {
-            return;
-        }
-        final RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
-        if (remoteMediaClient == null) {
-            return;
-        }
+        try {
+            if (mCastSession == null) {
+                return;
+            }
+            final RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
+            if (remoteMediaClient == null) {
+                return;
+            }
+
         remoteMediaClient.addListener(new RemoteMediaClient.Listener() {
 
 
@@ -1309,7 +1323,7 @@ try {
                     Intent intent = new Intent(PlayerActivity.this , ExpandedControlsActivity.class);
                     startActivity(intent);
                     remoteMediaClient.removeListener(this);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -1337,6 +1351,10 @@ try {
             }
         });
         remoteMediaClient.load(buildRemoteMediaInfo(), autoPlay, position);
+        }catch (Exception  ee)
+        {
+            return;
+        }
     }
 
 
@@ -1453,12 +1471,12 @@ try {
 
             @Override
             public void onSessionResumed(CastSession session, boolean wasSuspended) {
-                onApplicationConnected(session);
+             onApplicationConnected(session);
             }
 
             @Override
             public void onSessionResumeFailed(CastSession session, int error) {
-                onApplicationDisconnected();
+               // onApplicationDisconnected();
             }
 
             @Override
@@ -1468,7 +1486,7 @@ try {
 
             @Override
             public void onSessionStartFailed(CastSession session, int error) {
-                onApplicationDisconnected();
+             //   onApplicationDisconnected();
             }
 
             @Override
@@ -1477,6 +1495,7 @@ try {
 
             @Override
             public void onSessionEnding(CastSession session) {
+               // onApplicationDisconnected();
             }
 
             @Override
@@ -1488,39 +1507,49 @@ try {
             }
 
             private void onApplicationConnected(CastSession castSession) {
-                mCastSession = castSession;
 
-                int position=(int)player.getCurrentPosition();
-                if (null != mSelectedMedia) {
+                try {
+                    mCastSession = castSession;
 
-                    if (mPlaybackState == PlaybackState.PLAYING) {
-                        ExoPlayerControl.pause();
+                    int position = (int) player.getCurrentPosition();
+                    if (null != mSelectedMedia) {
 
-                        loadRemoteMedia(position, true);
-                        return;
-                    } else {
-                        mPlaybackState = PlaybackState.IDLE;
-                        updatePlaybackLocation(PlaybackLocation.REMOTE);
+                        if (mPlaybackState == PlaybackState.PLAYING) {
+                            ExoPlayerControl.pause();
+
+                            loadRemoteMedia(position, true);
+                            return;
+                        } else {
+                            mPlaybackState = PlaybackState.IDLE;
+                            updatePlaybackLocation(PlaybackLocation.REMOTE);
+                        }
                     }
+                    //updatePlayButton(mPlaybackState);
+                    invalidateOptionsMenu();
+
+
+                    if (mSelectedMedia != null)
+                        loadRemoteMedia(position, true);
+                }catch (Exception ee)
+                {
+                    ee.printStackTrace();
                 }
-                //updatePlayButton(mPlaybackState);
-                invalidateOptionsMenu();
-
-
-
-
-                if(mSelectedMedia!=null)
-                    loadRemoteMedia(position, true);
 
             }
 
             private void onApplicationDisconnected() {
 
-                updatePlaybackLocation(PlaybackLocation.LOCAL);
-                mPlaybackState = PlaybackState.IDLE;
-                mLocation = PlaybackLocation.LOCAL;
-                //  updatePlayButton(mPlaybackState);
-                invalidateOptionsMenu();
+                try {
+
+                    updatePlaybackLocation(PlaybackLocation.LOCAL);
+                    mPlaybackState = PlaybackState.IDLE;
+                    mLocation = PlaybackLocation.LOCAL;
+                    //  updatePlayButton(mPlaybackState);
+                    invalidateOptionsMenu();
+                }catch (Exception ee)
+                {
+                    ee.printStackTrace();
+                }
 
             }
         };
