@@ -190,6 +190,7 @@ public class SerieEpisodeAdapter extends RecyclerView.Adapter {
 
                             }catch (Exception ee)
                             {
+                                ee.printStackTrace();
 
                             }
 
@@ -436,6 +437,8 @@ public class SerieEpisodeAdapter extends RecyclerView.Adapter {
                             String errorJson = error2.getMessage();
                             JSONObject errorJ = new JSONObject(errorJson);
                             String MessageError = errorJ.getString("error");
+
+
 
 
                         }

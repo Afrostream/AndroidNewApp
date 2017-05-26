@@ -15,6 +15,8 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.LruCache;
@@ -71,6 +73,7 @@ import java.util.concurrent.TimeUnit;
 
 import hotchemi.android.rate.AppRate;
 import tv.afrostream.app.adapters.SerieSaisonListAdapter;
+import tv.afrostream.app.fragments.LifeFragment;
 import tv.afrostream.app.fragments.MyAccountFragment;
 import tv.afrostream.app.fragments.MyDownloadFragment;
 import tv.afrostream.app.fragments.ParrainageFragment;
@@ -143,6 +146,8 @@ public SharedPreferences sharedpreferences;
     public String PlanCurrency="";
 
     final Handler handlerRefreshToken = new Handler();
+
+
 
 
     @Override
@@ -1021,6 +1026,7 @@ public SharedPreferences sharedpreferences;
         final Menu mn=  navigationView.getMenu();
         mn.clear();
         mn.add(R.string.home).setIcon(R.drawable.home);
+        mn.add(R.string.life).setIcon(R.drawable.flamme);
         mn.add(R.string.listefavoris).setIcon(R.drawable.favmenu);
         mn.add(R.string.moncompte).setIcon(R.drawable.ic_notif);
         mn.add(R.string.Parrainage).setIcon(R.drawable.user);
@@ -1691,10 +1697,32 @@ drawer.closeDrawer(GravityCompat.START);
 
     }
 
+
+    private Fragment getCurrentFragment() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        int stackCount = fragmentManager.getBackStackEntryCount();
+        if( fragmentManager.getFragments() != null ) return fragmentManager.getFragments().get( stackCount > 0 ? stackCount-1 : stackCount );
+        else return null;
+    }
+
     @Override
     public void onBackPressed() {
 
       //  super.onBackPressed();
+
+
+  if (StaticVar.lifeFragment !=null ) {
+
+      if(StaticVar.lifeFragment.wv.canGoBack())
+      {
+          StaticVar.lifeFragment.wv.goBack();
+          return;
+      }
+
+
+  }
+
+
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -1904,18 +1932,34 @@ drawer.closeDrawer(GravityCompat.START);
                 }
             }
 
-                else if (title.equals(getString( R.string.moncompte)))
-                {
+            else if (title.equals(getString( R.string.moncompte)))
+            {
 
-                    drawer.closeDrawer(GravityCompat.START);
-                    if (findViewById(R.id.main_fragment_container) != null) {
+                drawer.closeDrawer(GravityCompat.START);
+                if (findViewById(R.id.main_fragment_container) != null) {
 
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-                        ft.replace(R.id.main_fragment_container, new MyAccountFragment());
+                    ft.replace(R.id.main_fragment_container, new MyAccountFragment());
 
-                        ft.commit();
-                    }
+                    ft.commit();
+                }
+
+
+            }
+
+            else if (title.equals(getString( R.string.life)))
+            {
+
+                drawer.closeDrawer(GravityCompat.START);
+                if (findViewById(R.id.main_fragment_container) != null) {
+
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                    ft.replace(R.id.main_fragment_container, new LifeFragment());
+
+                    ft.commit();
+                }
 
 
             }

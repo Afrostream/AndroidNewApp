@@ -7,6 +7,7 @@ import tv.afrostream.app.activitys.MyDownloadActivity;
 import tv.afrostream.app.activitys.SearchActivity;
 import tv.afrostream.app.activitys.SerieDownloadDetailActivity;
 import tv.afrostream.app.fragments.CategoriesFragement;
+import tv.afrostream.app.fragments.LifeFragment;
 import tv.afrostream.app.fragments.ListFavorisFragment;
 import tv.afrostream.app.fragments.MyDownloadFragment;
 
@@ -66,6 +67,7 @@ public class StaticVar {
     public static String date_token="";
 
     public static ListFavorisFragment favFragment;
+    public static LifeFragment lifeFragment;
 
     public static CategoriesFragement catFragment;
     public static MyDownloadActivity downloadAct;

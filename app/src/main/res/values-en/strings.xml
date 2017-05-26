@@ -235,5 +235,6 @@
     <string name="erd_no_thanks">No, thanks.</string>
     <string name="erd_remind_me_later">Remind me later.</string>
     <string name="erd_rate_now">Rate now.</string>
+    <string name="life">Life</string>
 
 </resources>
