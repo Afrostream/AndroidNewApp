@@ -490,8 +490,8 @@ public class PaymentActivityDemo extends FragmentActivity implements GoogleApiCl
 
                 Stripe stripe = null;
                 try {
-                    stripe = new Stripe(StaticVar.StripeKey);
-                } catch (AuthenticationException e) {
+                    stripe = new Stripe( getApplicationContext(), StaticVar.StripeKey);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

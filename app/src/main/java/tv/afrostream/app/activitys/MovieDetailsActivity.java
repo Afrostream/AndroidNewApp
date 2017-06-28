@@ -800,7 +800,7 @@ ProgressBar positionvideo;
 
                             }
                             AnimationUtils.showMe(bntPlay,100);
-                            AnimationUtils.rotateX(bntPlay,300);
+                           // AnimationUtils.rotateX(bntPlay,300);
                             loading_spinner.setVisibility(GONE);
 
 
@@ -809,7 +809,7 @@ ProgressBar positionvideo;
                         {
                             loading_spinner.setVisibility(GONE);
                             AnimationUtils.showMe(bntPlay,100);
-                            AnimationUtils.rotateX(bntPlay,300);
+                            //AnimationUtils.rotateX(bntPlay,300);
                             ee.printStackTrace();
                         }
 
@@ -827,7 +827,7 @@ ProgressBar positionvideo;
                   loading_spinner.setVisibility(View.GONE);
                 positionvideo.setVisibility(GONE);
                 AnimationUtils.showMe(bntPlay,100);
-                AnimationUtils.rotateX(bntPlay,300);
+               // AnimationUtils.rotateX(bntPlay,300);
                 if (StaticVar.subscription)
                     txtsubscribe.setVisibility(GONE);
                 else
@@ -2103,14 +2103,19 @@ try{
         TextView movielabel = (TextView ) findViewById(R.id.txtMovieLabel);
 
 
-
-      if(labelMovie.equals("") || labelMovie.equals("null"))
-            movielabel.setVisibility(GONE);
-        else {
-            movielabel.setVisibility(VISIBLE);
-            movielabel.setText(labelMovie);
+        try {
+            if (labelMovie != null) {
+                if (labelMovie.equals("") || labelMovie.equals("null"))
+                    movielabel.setVisibility(GONE);
+                else {
+                    movielabel.setVisibility(VISIBLE);
+                    movielabel.setText(labelMovie);
+                }
+            }
+        }catch (Exception ee)
+        {
+            ee.getStackTrace();
         }
-
 
         try{
 
