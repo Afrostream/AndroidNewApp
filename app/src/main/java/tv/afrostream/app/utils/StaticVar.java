@@ -17,7 +17,7 @@ import tv.afrostream.app.fragments.MyDownloadFragment;
 
 public class StaticVar {
 
-    public static Boolean DevMode=true;
+    public static Boolean DevMode=false;
 
     public static Boolean FirstLaunch=true;
 

@@ -16,16 +16,16 @@
         "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\drawable\\master_back.xml"
     },
     {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\mastercard_back_bg.xml",
-        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\drawable\\mastercard_back_bg.xml"
+        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\img_amex_center_face.png",
+        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\drawable\\img_amex_center_face.png"
     },
     {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "C:\\Users\\bahri\\.android\\build-cache\\9d1a71e42fa021dbc02a81a5137d7e69b7eaf158\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
     },
     {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\img_amex_center_face.png",
-        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\drawable\\img_amex_center_face.png"
+        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\mastercard_back_bg.xml",
+        "source": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\src\\main\\res\\drawable\\mastercard_back_bg.xml"
     },
     {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\card_color_round_rect_pink.xml",
@@ -36,12 +36,12 @@
         "source": "C:\\Users\\bahri\\.android\\build-cache\\9d1a71e42fa021dbc02a81a5137d7e69b7eaf158\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
-        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_clear_material.xml",
-        "source": "C:\\Users\\bahri\\.android\\build-cache\\9d1a71e42fa021dbc02a81a5137d7e69b7eaf158\\output\\res\\drawable\\abc_ic_clear_material.xml"
-    },
-    {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_track_material.xml",
         "source": "C:\\Users\\bahri\\.android\\build-cache\\9d1a71e42fa021dbc02a81a5137d7e69b7eaf158\\output\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_clear_material.xml",
+        "source": "C:\\Users\\bahri\\.android\\build-cache\\9d1a71e42fa021dbc02a81a5137d7e69b7eaf158\\output\\res\\drawable\\abc_ic_clear_material.xml"
     },
     {
         "merged": "D:\\mywork\\AfroStream\\AfrostreamNewApp\\AndroidNewApp\\creditcarddesign\\build\\intermediates\\res\\merged\\release\\drawable\\notification_bg_low.xml",
